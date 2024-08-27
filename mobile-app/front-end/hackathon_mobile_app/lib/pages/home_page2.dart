@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hackathon_mobile_app/widgets/home_buttons.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/home_button.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage2 extends StatelessWidget {
+  const HomePage2({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: const Color(0xffe9e3d5),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(

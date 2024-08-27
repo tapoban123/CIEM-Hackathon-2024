@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_mobile_app/pages/home_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_func.dart';
 
-void main(){
-  runApp(const MyApp());
+void main() {
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Hackathon Mobile App",
-      theme: ThemeData.light(),
-      home:const HomePage(),
+      theme: ThemeData.dark(useMaterial3: true),
+      home: const BottomNavigationFunc(),
     );
   }
 }
