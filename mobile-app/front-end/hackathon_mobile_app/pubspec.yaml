@@ -68,13 +68,19 @@ flutter:
     - assets/images/jam_menu.svg
     - assets/images/logo.png 
     - assets/images/community_top_bg.png
+    - assets/images/finance.png
     - assets/images/Events.png
     - assets/images/Discover.png
     - assets/images/Chats.png
     - assets/images/profile_img.png
     - assets/images/cam.png
     - assets/images/dev.png
-    - assets/images/finance.png
+    - assets/images/male_avatar1.png 
+    - assets/images/male_avatar2.png
+    - assets/images/male_avatar3.png
+    - assets/images/male_avatar4.png
+    - assets/images/male_avatar5.png
+    - assets/images/female_avatar.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -34,10 +34,10 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
   ];
 
   double getKeyboardheight() {
-    final keyboardOn = View.of(context).viewInsets.bottom;
+    final keyboardOff = (View.of(context).viewInsets.bottom) == 0;
     final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    if (keyboardOn == 0) {
+    if (keyboardOff) {
       return 100;
     } else {
       return keyboardHeight + 32;
@@ -73,6 +73,7 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                     ),
                   ),
                   child: TextField(
+                    focusNode: ref.read(communityTextFieldFocusNodeProvider),
                     readOnly: readOnly,
                     decoration: InputDecoration(
                       enabledBorder: InputBorder.none,

@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/home_navigation/widgets/custom_bottom_nav_bar.dart';
 import 'package:hackathon_mobile_app/home_navigation/widgets/end_drawer.dart';
-import 'package:hackathon_mobile_app/home_navigation/widgets/nav_button.dart';
 import 'package:hackathon_mobile_app/pages/community/community_page.dart';
 import 'package:hackathon_mobile_app/pages/community/widgets/community_app_bar.dart';
 import 'package:hackathon_mobile_app/pages/community/widgets/community_drawer.dart';
@@ -50,6 +48,14 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
       return const CommunityAppBar();
     } else {
       return const HomeAppbar();
+    }
+  }
+
+  double paddingFromTop() {
+    if (currentPage != 1) {
+      return 260;
+    } else {
+      return 190;
     }
   }
 
@@ -109,8 +115,17 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
                   ),
                 ),
               ),
+            if (currentPage == 1)
+              Positioned(
+                top: 140,
+                left: 80,
+                child: Text(
+                  "Psychologists' Community",
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+              ),
             Positioned(
-              top: 260,
+              top: paddingFromTop(),
               right: 2,
               left: 2,
               bottom: 0,
