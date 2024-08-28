@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackathon_mobile_app/home_navigation/widgets/custom_bottom_nav_bar.dart';
 import 'package:hackathon_mobile_app/home_navigation/widgets/end_drawer.dart';
 import 'package:hackathon_mobile_app/home_navigation/widgets/nav_button.dart';
-import 'package:hackathon_mobile_app/pages/community_page.dart';
+import 'package:hackathon_mobile_app/pages/community/community_page.dart';
+import 'package:hackathon_mobile_app/pages/community/widgets/community_app_bar.dart';
+import 'package:hackathon_mobile_app/pages/community/widgets/community_drawer.dart';
 import 'package:hackathon_mobile_app/pages/home/home_page.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/home_appbar.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/home_search_bar.dart';
 import 'package:hackathon_mobile_app/pages/notifications_page.dart';
 import 'package:hackathon_mobile_app/pages/profile_page.dart';
@@ -24,7 +27,6 @@ class BottomNavigationFunc extends ConsumerStatefulWidget {
 class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
   late int currentPage;
   double navButtonIconSize = 24;
-  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final FocusNode inputFocusNode = FocusNode();
 
   List<Widget> pages = const [
@@ -35,16 +37,21 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
     StudentCourses(),
   ];
 
-  void onNavButtonPressed(int pageNumber) {
-    ref.read(navigationProvider.notifier).navigateToPage(pageNumber);
+  String setPageTopBg() {
+    if (currentPage == 1) {
+      return "assets/images/community_top_bg.png";
+    } else {
+      return "assets/images/top_bg_img.png";
+    }
   }
 
-  List<IconData> navButtonsIcons = [
-    Icons.home_outlined,
-    CupertinoIcons.person_3,
-    CupertinoIcons.bell,
-    Icons.person_2_outlined
-  ];
+  Widget setPageAppbar() {
+    if (currentPage == 1) {
+      return const CommunityAppBar();
+    } else {
+      return const HomeAppbar();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,45 +63,13 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
     return Scaffold(
       key: ScaffoldKey.scaffoldKey,
       endDrawer: const EndDrawer(),
+      resizeToAvoidBottomInset: false,
+      drawer: const CommunityDrawer(),
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 18),
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => const SizedBox(
-                  width: 15,
-                ),
-                itemCount: pages.length - 1,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: NavButton(
-                      onTap: () => onNavButtonPressed(index),
-                      buttonIcon: navButtonsIcons[index],
-                      iconSize: index == currentPage ? 28 : 24,
-                      iconColor: index == currentPage
-                          ? Colors.white
-                          : Colors.white.withOpacity(0.5),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+      floatingActionButton: CustomBottomNavBar(
+        currentPage: currentPage,
+        pages: pages,
       ),
       body: SizedBox(
         width: double.infinity,
@@ -104,62 +79,11 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
             SizedBox(
               width: double.infinity,
               child: Image.asset(
-                "assets/images/top_bg_img.png",
+                setPageTopBg(),
                 fit: BoxFit.cover,
               ),
             ),
-            Positioned(
-              top: 40,
-              left: 10,
-              right: 16,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.white,
-                          ),
-                          child: const Icon(
-                            Icons.person,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 200,
-                          child: ListTile(
-                            title: Text(
-                              "Tapoban Ray",
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text("Student"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        ScaffoldKey.scaffoldKey.currentState!.openEndDrawer();
-                      },
-                      child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: SvgPicture.asset(
-                          "assets/images/jam_menu.svg",
-                          height: 15,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            setPageAppbar(),
             Positioned(
               top: 120,
               right: 2,
@@ -175,15 +99,16 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
                 ),
               ),
             ),
-            Positioned(
-              top: 130,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: HomeSearchBar(
-                  inputFocusNode: inputFocusNode,
+            if (currentPage != 1)
+              Positioned(
+                top: 130,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: HomeSearchBar(
+                    inputFocusNode: inputFocusNode,
+                  ),
                 ),
               ),
-            ),
             Positioned(
               top: 260,
               right: 2,

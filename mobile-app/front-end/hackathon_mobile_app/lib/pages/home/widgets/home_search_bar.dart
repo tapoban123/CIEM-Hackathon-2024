@@ -21,14 +21,14 @@ class HomeSearchBar extends StatelessWidget {
     );
     return Container(
       height: 105,
-      margin: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 20),
       decoration: BoxDecoration(
         boxShadow: const [
           BoxShadow(
             color: Colors.black,
-            blurRadius: 1,
+            blurRadius: 2.6,
             offset: Offset(3, 5),
-            spreadRadius: 2,
+            spreadRadius: 1,
           ),
         ],
         color: Colors.white,
@@ -95,7 +95,7 @@ class HomeSearchBar extends StatelessWidget {
                     ),
                     HomeButton(
                       buttonText: "Architecture",
-                      buttonColor: Color(0xff624cab),
+                      buttonColor: Color(0xffAB9AE2),
                     ),
                   ],
                 )

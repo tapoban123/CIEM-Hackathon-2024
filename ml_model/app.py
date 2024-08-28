@@ -3,8 +3,8 @@ import pickle
 import numpy as np
 
 # Load the scaler, model, and class names
-scaler = pickle.load(open("scaler.pkl", 'rb'))
-model = pickle.load(open("model.pkl", 'rb'))
+scaler = pickle.load(open("ml_model/scaler.pkl", 'rb'))
+model = pickle.load(open("ml_model/model.pkl", 'rb'))
 class_names = ['Lawyer', 'Doctor', 'Government Officer', 'Artist', 'Unknown',
                'Software Engineer', 'Teacher', 'Business Owner', 'Scientist',
                'Banker', 'Writer', 'Accountant', 'Designer',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_mobile_app/data/courses.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StudentCourses extends StatelessWidget {
   const StudentCourses({super.key});
@@ -22,6 +24,7 @@ class StudentCourses extends StatelessWidget {
                 "Courses for You",
                 style: TextStyle(
                   color: Colors.black,
+                  fontWeight: FontWeight.bold,
                   fontSize: 25,
                 ),
               ),
@@ -31,25 +34,50 @@ class StudentCourses extends StatelessWidget {
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 0),
                 shrinkWrap: true,
-                itemCount: 15,
+                itemCount: courses.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 100,
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    margin: const EdgeInsets.only(bottom: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xff624cab),
-                    ),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("My Course"),
-                        Text("Science"),
-                      ],
+                  final eachCourse = courses[index];
+
+                  return GestureDetector(
+                    onTap: () async {
+                      Uri url = Uri.parse(eachCourse["url"]);
+                      await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    child: Container(
+                      height: 100,
+                      padding: const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
+                      ),
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: eachCourse["color"]!,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            eachCourse["title"]!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            eachCourse["subtitle"]!,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

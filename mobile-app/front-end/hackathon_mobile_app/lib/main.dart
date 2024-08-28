@@ -18,7 +18,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Hackathon Mobile App",
-      theme: ThemeData.dark(useMaterial3: true),
+      theme: ThemeData.dark(useMaterial3: true).copyWith(
+        textTheme: const TextTheme(
+          displaySmall: TextStyle(
+            fontFamily: "TripSans",
+            fontSize: 12,
+            letterSpacing: 1,
+          ),
+          displayMedium: TextStyle(
+            fontFamily: "TripSans",
+            fontSize: 16,
+            letterSpacing: 1,
+          ),
+          displayLarge: TextStyle(
+            fontFamily: "TripSans",
+            fontSize: 24,
+            letterSpacing: 0.5,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
       home: const BottomNavigationFunc(),
     );
   }

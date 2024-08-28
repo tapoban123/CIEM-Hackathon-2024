@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_mobile_app/pages/home/widgets/home_search_bar.dart';
+import 'package:hackathon_mobile_app/data/e_books.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/featured_courses_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,58 +16,103 @@ class HomePage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  Text(
                     "Featured Courses",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FeaturedCoursesCard(
+                        cardColor: const Color(0xffFF7340),
+                        cardImage: SizedBox(
+                          height: 70,
+                          width: double.infinity,
+                          child: Image.asset(
+                            "assets/images/finance.png",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        titleText: "Finance",
+                        subtitleText: "22 lessons",
+                      ),
+                      FeaturedCoursesCard(
+                        cardColor: const Color(0xff624CAB),
+                        cardImage: SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: Image.asset(
+                            "assets/images/dev.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        titleText: "Web-Dev",
+                        subtitleText: "27 lessons",
+                      ),
+                      FeaturedCoursesCard(
+                        cardColor: const Color(0xff25C3DB),
+                        cardImage: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(
+                            "assets/images/cam.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        titleText: "Film-making",
+                        subtitleText: "25 lessons",
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "E-Books",
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          height: 150,
-                          width: 150,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "E-Books",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  SizedBox(
                     height: 250,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 10,
+                      itemCount: generalEBooks.length,
                       itemBuilder: (context, index) {
+                        final eachEbook = generalEBooks[index];
+
                         return Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: Container(
-                            width: 150,
-                            height: 250,
-                            decoration: const BoxDecoration(color: Colors.blueGrey),
+                          child: GestureDetector(
+                            onTap: () async {
+                              Uri url = Uri.parse(eachEbook["access_url"]);
+                              await launchUrl(
+                                url,
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Image.network(
+                                eachEbook['url'],
+                                fit: BoxFit.fill,
+                                height: 20,
+                              ),
+                            ),
                           ),
                         );
                       },
@@ -74,9 +121,9 @@ class HomePage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  Text(
                     "Articles",
-                    style: TextStyle(color: Colors.black),
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const SizedBox(
                     height: 10,
