@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hackathon_mobile_app/data/articles.dart';
 import 'package:hackathon_mobile_app/data/e_books.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/articles_card.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/featured_courses_card.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
+import 'package:hackathon_mobile_app/utils/screen_measurements.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
+
+  @override
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  final ScrollController homePageScrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    homePageScrollController.addListener(
+      () {
+        final scrollDirection =
+            homePageScrollController.position.userScrollDirection;
+
+        if (scrollDirection == ScrollDirection.forward) {
+          ref.read(showOrHideBNBProvider.notifier).showBNB();
+        } else if (scrollDirection == ScrollDirection.reverse) {
+          ref.read(showOrHideBNBProvider.notifier).hideBNB();
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: homePageScrollController,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -129,35 +161,50 @@ class HomePage extends StatelessWidget {
                     height: 10,
                   ),
                   SizedBox(
-                    height: 200,
+                    height: ScreenMeasurements.screenHeight(context) * 0.34,
                     child: ListView.builder(
-                      itemCount: 10,
+                      padding: const EdgeInsets.only(top: 0),
+                      itemCount: articles.length,
                       itemBuilder: (context, index) {
+                        final eachArticle = articles[index];
+
                         if (index % 2 == 0) {
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 0),
-                            alignment: Alignment.centerLeft,
-                            decoration: const BoxDecoration(),
-                            child: const Chip(
-                              label: Text(
-                                "Sustainable Success: A Framework for Optimizing Profit ~By Nicholas Piscani",
-                                style: TextStyle(fontSize: 8.5),
-                              ),
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: Row(
+                              children: [
+                                ArticlesCard(
+                                  text: eachArticle["title"],
+                                  onTap: () async {
+                                    Uri url = Uri.parse(eachArticle["url"]);
+                                    await launchUrl(
+                                      url,
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  },
+                                  cardColor: eachArticle["color"],
+                                )
+                              ],
                             ),
                           );
                         } else {
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 0),
-                            alignment: Alignment.centerRight,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: const Chip(
-                              label: Text(
-                                "Making short films is a powerful way to learn job skills ~ By Wendy Smidt",
-                                style: TextStyle(fontSize: 8.5),
-                                softWrap: true,
-                              ),
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ArticlesCard(
+                                  text: eachArticle["title"],
+                                  onTap: () async {
+                                    Uri url = Uri.parse(eachArticle["url"]);
+                                    await launchUrl(
+                                      url,
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  },
+                                  cardColor: eachArticle["color"],
+                                ),
+                              ],
                             ),
                           );
                         }

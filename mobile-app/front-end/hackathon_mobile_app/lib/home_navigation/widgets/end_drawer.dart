@@ -85,6 +85,12 @@ class EndDrawer extends ConsumerWidget {
                 decoration: TextDecoration.underline,
               ),
             ),
+            const Text(
+              "Log Out",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+              ),
+            ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(

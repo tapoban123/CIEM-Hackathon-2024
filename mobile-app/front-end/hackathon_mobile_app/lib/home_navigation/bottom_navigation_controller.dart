@@ -12,17 +12,18 @@ import 'package:hackathon_mobile_app/pages/notifications_page.dart';
 import 'package:hackathon_mobile_app/pages/profile_page.dart';
 import 'package:hackathon_mobile_app/pages/student_courses.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
-class BottomNavigationFunc extends ConsumerStatefulWidget {
-  const BottomNavigationFunc({super.key});
+class BottomNavigationController extends ConsumerStatefulWidget {
+  const BottomNavigationController({super.key});
 
   @override
-  ConsumerState<BottomNavigationFunc> createState() =>
+  ConsumerState<BottomNavigationController> createState() =>
       _BottomNavigationFuncState();
 }
 
-class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
+class _BottomNavigationFuncState extends ConsumerState<BottomNavigationController> {
   late int currentPage;
   double navButtonIconSize = 24;
   final FocusNode inputFocusNode = FocusNode();
@@ -55,12 +56,14 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
     if (currentPage != 1) {
       return 260;
     } else {
-      return 190;
+      return 180;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final showBNB = ref.watch(showOrHideBNBProvider);
+
     currentPage = ref.watch(navigationProvider);
     final value = View.of(context).viewInsets.bottom;
     if (value == 0) {
@@ -73,10 +76,13 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationFunc> {
       drawer: const CommunityDrawer(),
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomBottomNavBar(
-        currentPage: currentPage,
-        pages: pages,
-      ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: showBNB
+          ? CustomBottomNavBar(
+              currentPage: currentPage,
+              pages: pages,
+            )
+          : null,
       body: SizedBox(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,

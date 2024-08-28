@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hackathon_mobile_app/data/community_messages.dart';
 import 'package:hackathon_mobile_app/pages/community/widgets/message_card.dart';
 import 'package:hackathon_mobile_app/providers/community_messages_provider.dart';
 import 'package:hackathon_mobile_app/providers/other_providers.dart';
@@ -14,6 +13,8 @@ class CommunityPage extends ConsumerStatefulWidget {
 }
 
 class _CommunityPageState extends ConsumerState<CommunityPage> {
+  final ScrollController messagesScrollController = ScrollController();
+
   @override
   void initState() {
     ref.read(communityMessagesProvider.notifier).getMessages();
@@ -22,10 +23,13 @@ class _CommunityPageState extends ConsumerState<CommunityPage> {
 
   @override
   Widget build(BuildContext context) {
+    final communityMessages = ref.watch(communityMessagesProvider);
+
     final value = View.of(context).viewInsets.bottom;
     if (value == 0) {
       ref.read(communityTextFieldFocusNodeProvider).unfocus();
     }
+
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -39,35 +43,40 @@ class _CommunityPageState extends ConsumerState<CommunityPage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: ScreenMeasurements.screenHeight(context) * 0.6,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(top: 0),
-                      itemCount: ref.read(communityMessagesProvider).length,
-                      itemBuilder: (context, index) {
-                        final eachMessage =
-                            ref.read(communityMessagesProvider)[index];
+                    height: ScreenMeasurements.screenHeight(context) * 0.43,
+                    child: SingleChildScrollView(
+                      reverse: true,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: messagesScrollController,
+                        padding: const EdgeInsets.only(top: 0),
+                        itemCount: communityMessages.length,
+                        itemBuilder: (context, index) {
+                          final eachMessage = communityMessages[index];
 
-                        if (index == 4) {
+                          if (index >= 4) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: MessageCard(
+                                avatarUrl: "assets/images/male_avatar2.png",
+                                name: "Tapoban",
+                                message: eachMessage["message"]!,
+                                currentUserMessage: true,
+                              ),
+                            );
+                          }
+
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15.0),
                             child: MessageCard(
-                              avatarUrl: "assets/images/male_avatar2.png",
-                              name: "Tapoban",
+                              avatarUrl: eachMessage["avatar"]!,
+                              name: eachMessage["name"]!,
                               message: eachMessage["message"]!,
-                              currentUserMessage: true,
                             ),
                           );
-                        }
-
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 15.0),
-                          child: MessageCard(
-                            avatarUrl: eachMessage["avatar"]!,
-                            name: eachMessage["name"]!,
-                            message: eachMessage["message"]!,
-                          ),
-                        );
-                      },
+                        },
+                      ),
                     ),
                   ),
                 ],

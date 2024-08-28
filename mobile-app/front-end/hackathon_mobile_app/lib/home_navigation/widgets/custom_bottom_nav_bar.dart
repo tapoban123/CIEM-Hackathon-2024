@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/home_navigation/widgets/nav_button.dart';
+import 'package:hackathon_mobile_app/providers/community_messages_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/providers/other_providers.dart';
 
@@ -20,6 +21,8 @@ class CustomBottomNavBar extends ConsumerStatefulWidget {
 }
 
 class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
+  final TextEditingController messageTextController = TextEditingController();
+
   void onNavButtonPressed(int pageNumber) {
     ref.read(navigationProvider.notifier).navigateToPage(pageNumber);
   }
@@ -73,15 +76,23 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                     ),
                   ),
                   child: TextField(
+                    controller: messageTextController,
                     focusNode: ref.read(communityTextFieldFocusNodeProvider),
                     readOnly: readOnly,
                     decoration: InputDecoration(
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       hintText: "Text it out",
-                      suffixIcon: const Icon(
-                        Icons.send_rounded,
-                        color: Colors.black,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          ref
+                              .read(communityMessagesProvider.notifier)
+                              .addNewMessage(messageTextController.text);
+                        },
+                        child: const Icon(
+                          Icons.send_rounded,
+                          color: Colors.black,
+                        ),
                       ),
                       hintStyle: TextStyle(
                         color: Colors.black.withOpacity(0.5),

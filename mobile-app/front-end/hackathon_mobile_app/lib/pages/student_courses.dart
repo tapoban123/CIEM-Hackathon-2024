@@ -1,9 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/data/courses.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class StudentCourses extends StatelessWidget {
+class StudentCourses extends ConsumerStatefulWidget {
   const StudentCourses({super.key});
+
+  @override
+  ConsumerState<StudentCourses> createState() => _StudentCoursesState();
+}
+
+class _StudentCoursesState extends ConsumerState<StudentCourses> {
+  final ScrollController coursesPageController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    coursesPageController.addListener(
+      () {
+        final scrollDirection =
+            coursesPageController.position.userScrollDirection;
+
+        if (scrollDirection == ScrollDirection.forward) {
+          ref.read(showOrHideBNBProvider.notifier).showBNB();
+        } else if (scrollDirection == ScrollDirection.reverse) {
+          ref.read(showOrHideBNBProvider.notifier).hideBNB();
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +60,7 @@ class StudentCourses extends StatelessWidget {
             Expanded(
               flex: 10,
               child: ListView.builder(
+                controller: coursesPageController,
                 padding: const EdgeInsets.only(top: 0),
                 shrinkWrap: true,
                 itemCount: courses.length,

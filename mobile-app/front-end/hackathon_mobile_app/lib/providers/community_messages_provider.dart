@@ -19,10 +19,21 @@ class CommunityMessagesProvider
     for (int i = 0; i < 5; i++) {
       messagesData = {
         "name": communityMembers[i]["name"],
-        "avatar":communityMembers[i]["avatar"],
+        "avatar": communityMembers[i]["avatar"],
         "message": communityMessages[i],
       };
       state.add(messagesData);
     }
+  }
+
+  void addNewMessage(String message) {
+    messagesData = {
+      "name": "Tapoban",
+      "avatar": "assets/images/male_avatar2.png",
+      "message": message,
+    };
+
+    state.add(messagesData);
+    // print(state);
   }
 }
