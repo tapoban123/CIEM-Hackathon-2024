@@ -1,0 +1,321 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+::-webkit-scrollbar{
+    background-color:transparent;
+    width: 1px;
+
+}
+
+@font-face { font-family: TripSans-mono-regular; src: url('./font/TripSansMono-Regular.eot'); } 
+
+@font-face { font-family: TripSans-bold; src: url('./font/TripSans-Bold.eot'); } 
+
+@font-face { font-family: TripSans-regular; src: url('./font/TripSans-Regular.eot'); } 
+
+@font-face { font-family: TripSans-medium; src: url('./font/TripSans-Medium.eot'); } 
+
+
+body{
+    overflow-x:hidden ;
+}
+
+@font-face { font-family: TripSans-mono-regular; src: url('./font/TripSansMono-Regular.eot'); } 
+
+@font-face { font-family: TripSans-bold; src: url('./font/TripSans-Bold.eot'); } 
+
+@font-face { font-family: TripSans-regular; src: url('./font/TripSans-Regular.eot'); } 
+
+@font-face { font-family: TripSans-medium; src: url('./font/TripSans-Medium.eot'); } 
+
+#nav{
+    height: 95px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 28px;
+    justify-content: space-between;
+    position: absolute;
+    
+}
+
+#nav img{
+    
+    display: flex;
+    align-items: center;
+    padding-left: 35px;
+    margin-bottom: 0;
+    justify-content: flex-start;
+    transition: 0.3s;
+    height: 70px;
+}
+
+#nav img:hover{
+    filter: drop-shadow(0 0 10px rgba(25, 0, 65, 0.8))
+            drop-shadow(0 0 20px rgba(174, 0, 255, 0.733))
+            drop-shadow(0 0 30px rgba(162, 0, 255, 0.945));
+    scale: 1.1;
+  }
+
+#nav_optn h4 a{
+    font-family:'TripSans-regular' ;
+    font-weight: 400;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    font-family: "Trip Sans", sans-serif;
+    font-style: normal;
+    opacity: 1;
+}
+
+#nav_optn h4 a:hover{
+    filter: drop-shadow(0 0 10px rgba(25, 0, 65, 0.8))
+            drop-shadow(0 0 20px rgba(174, 0, 255, 0.733))
+            drop-shadow(0 0 30px rgba(162, 0, 255, 0.945));
+    font-weight: 500;
+    text-decoration: none;
+}
+
+#nav_optn{
+    padding-right: 80px;
+    display: flex;
+    gap: 140px;
+    align-items: center;
+    justify-content: flex-end;
+    color:white;
+    font-weight: 400;
+}
+
+
+.star:hover{
+    filter: drop-shadow(0 0 10px rgba(25, 0, 65, 0.8))
+    drop-shadow(0 0 20px rgba(174, 0, 255, 0.733))
+    drop-shadow(0 0 30px rgba(162, 0, 255, 0.945));
+}
+
+.head h1{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 200px;
+    left: 280px;
+    align-items: flex-start;
+    font-family: "Trip Sans", sans-serif;
+    color: white;
+    font-size: 4rem;
+    font-weight: 800;
+    padding-bottom: 30px;
+}
+
+.head-para{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 300px;
+    left: 210px;
+    color: white;
+    font-family: "Trip Sans", sans-serif;
+}
+
+.head-para p{
+    font-family: "Trip Sans", sans-serif;
+    padding-bottom: 26px;
+    opacity: 0.8;
+    font-size: 2.4rem;
+}
+
+.about{
+    display: flex;
+    position: absolute;
+    top: 570px;
+    left: 40px;
+    font-family: "Trip Sans", sans-serif;
+    font-size: 2rem;
+}
+
+.about-features{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 690px;
+    left: 40px;
+    font-family: "Trip Sans", sans-serif;
+}
+.about-features h3{
+    font-weight: 900;
+    font-size: 1.4rem;
+    padding-bottom: 12px;
+}
+.about-features p{
+    font-weight: 200;
+    font-size: 1.2rem;
+    padding-bottom: 32px;
+}
+
+.feature-2{
+    position: absolute;
+    top: 270px;
+    left: 489px;
+}
+
+.feature-2 img{
+    position: absolute;
+    left: 600px;
+    bottom: 170px;
+}
+.feature-1 img{
+    position: absolute;
+    left: 900px;
+    bottom: 1.2px;
+}
+
+.feature-2 h3{
+    position: absolute;
+    min-width: 95vw;
+    left: 390px;
+    bottom: 86px;
+    padding-bottom: 40px;
+}
+
+.feature-2 p{
+    text-align: right;
+}
+
+.feature-3{
+    position: absolute;
+    top: 370px;
+}
+
+
+
+.feature-4{
+    position: absolute;
+    top: 568px;
+    left: 422px;
+}
+
+.feature-4 h3{
+    text-align: right;
+}
+
+.feature-4 img{
+    position: absolute;
+    left: 750px;
+}
+
+.test button{
+    position: absolute;
+    top: 1440px;
+    left: 550px;
+    height: auto;
+    width: 200px;
+    border: none;
+    padding: 14px;
+    border-radius: 15px;
+    background-color: #25c3db;
+    box-shadow: 4px 4px black;
+}
+
+.test h2{
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.download-btn{
+    position: absolute;
+    top: 150px;
+    right: 10px;
+    border: none;
+    height: auto;
+    width: 160px;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 6px 6px black;
+}
+.download-btn h4{
+    font-size: 18px;
+    padding-top: 6px;
+}
+.download-btn .vector{
+    float: left;
+}
+
+
+
+
+
+.footer{
+    position: absolute;
+    top: 1700px;
+    left: 50px;
+    
+}
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 1700px;
+    left: 780px;
+    color: white;
+    font-family: "Trip Sans", sans-serif;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: black;
+}
+.contacts h2{
+    padding-bottom: 40px;
+}
+.contacts li{
+    padding: 10px;
+    opacity: 0.8;
+}
+.contacts li:hover{
+    opacity: 1;
+}
+.contacts img{
+    float: left;
+    padding-right: 12px;
+} 
+
+.contacts-info{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 1700px;
+    left: 1050px;
+    color: black;
+    font-family: "Trip Sans", sans-serif;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+.contacts-info h2{
+    padding-bottom: 20px;
+}
+.contacts-info p{
+    padding-bottom: 80px;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 1550px;
+    left: 80px;
+}
+.line h3{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: "Trip Sans", sans-serif;
+    font-weight: lighter;
+    word-spacing: 4px;
+}
+

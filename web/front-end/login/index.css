@@ -1,0 +1,121 @@
+
+::-webkit-scrollbar{
+  background-color:transparent;
+  width: 1px;
+
+}
+
+.rectangle-div {
+  position: absolute;
+  top: 195px;
+  left: 449px;
+  box-shadow: 10px 10px 0#e9e3d5;
+  border-radius: var(--br-11xl);
+  background-color: #ff7340;  
+  width: 543px;
+  height: 593px;
+}
+.enter-email1,
+.password {
+  position: absolute;
+  top: 412px;
+  left: 540px;
+  line-height: 130%;
+}
+.password {
+  top: 495px;
+}
+.quiz {
+  color: #fff;
+}
+.dont-have-an-container,
+.login1 {
+  position: absolute;
+  line-height: 130%;
+}
+.dont-have-an-container {
+  top: 587px;
+  left: 528px;
+  display: inline-block;
+  width: 384px;
+}
+.login1 {
+  top: 308px;
+  left: 652px;
+  font-size: var(--font-size-36xl);
+  font-family: var(--font-trip-sans);
+  color: var(--color-linen);
+}
+.rectangle-input {
+  border: 0;
+  outline: 0;
+  background-color: var(--color-linen);
+  top: 431px;
+  box-shadow: 6px 6px 0#110904;
+  width: 384px;
+  height: 47px;
+}
+.login-page-child1,
+.rectangle-icon,
+.rectangle-input {
+  position: absolute;
+  left: 528px;
+  border-radius: var(--br-3xs);
+}
+.login-page-child1 {
+  border: 0;
+  outline: 0;
+  background-color: var(--color-linen);
+  top: 514px;
+  box-shadow: 6px 6px 0#110904;
+  width: 384px;
+  height: 47px;
+}
+.rectangle-icon {
+  top: 635px;
+  width: 135px;
+  height: 41px;
+}
+.makiarrow-icon1 {
+  position: absolute;
+  top: 529px;
+  left: 868px;
+  width: 21px;
+  height: 21px;
+  overflow: hidden;
+}
+.get-started {
+  position: absolute;
+  top: 646px;
+  left: 556px;
+  line-height: 130%;
+  font-family: var(--font-trip-sans);
+  color: #000;
+}
+.login-page-child2 {
+  position: absolute;
+  height: 2.87%;
+  width: 3.54%;
+  top: 71.58%;
+  right: 34.72%;
+  bottom: 25.54%;
+  left: 61.74%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.login-page1 {
+  width: 100%;
+  position: relative;
+  height: 1010px;
+  overflow: hidden;
+  background-image: url(./public/login-page1@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: left;
+  font-size: var(--font-size-mini);
+  color: var(--color-gray);
+  font-family: var(--font-trip-sans-mono);
+}

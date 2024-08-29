@@ -1,0 +1,95 @@
+
+::-webkit-scrollbar{
+  background-color:transparent;
+  width: 1px;
+
+}
+
+
+.login-page-child3 {
+  position: absolute;
+  top: 195px;
+  left: 449px;
+  box-shadow: 10px 10px 0#e9e3d5;
+  border-radius: var(--br-11xl);
+  background-color: var(--color-coral);
+  width: 543px;
+  height: 593px;
+}
+.heres-your-passkey,
+.rizz69 {
+  position: absolute;
+  top: 309px;
+  left: 576px;
+  line-height: 130%;
+  display: inline-block;
+  width: 288px;
+}
+.rizz69 {
+  top: 483px;
+  left: 561px;
+  color: var(--color-gray);
+}
+.login-page-child4 {
+  position: absolute;
+  height: 2.87%;
+  width: 3.54%;
+  top: 71.58%;
+  right: 34.72%;
+  bottom: 25.54%;
+  left: 61.74%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: contain;
+}
+.vector-icon {
+  height: 58.33%;
+  width: 58.33%;
+  top: 33.33%;
+  right: 33.33%;
+  bottom: 8.33%;
+  left: 8.33%;
+  max-width: 100%;
+  max-height: 100%;
+}
+.bxscopy,
+.vector-icon,
+.vector-icon1 {
+  position: absolute;
+  overflow: hidden;
+}
+.vector-icon1 {
+  height: 58.33%;
+  width: 58.33%;
+  top: 8.33%;
+  right: 8.33%;
+  bottom: 33.33%;
+  left: 33.33%;
+  max-width: 100%;
+  max-height: 100%;
+}
+.bxscopy {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 509px;
+  left: 849px;
+  width: 30px;
+  height: 30px;
+}
+.login-page2 {
+  width: 100%;
+  position: relative;
+  height: 1010px;
+  overflow: hidden;
+  background-image: url(./public/login-page2@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: center;
+  font-size: var(--font-size-36xl);
+  color: var(--color-linen);
+  font-family: var(--font-trip-sans);
+}

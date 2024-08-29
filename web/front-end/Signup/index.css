@@ -1,0 +1,103 @@
+
+
+::-webkit-scrollbar{
+  background-color:transparent;
+  width: 1px;
+
+}
+
+
+.login-page-child {
+  position: absolute;
+  top: 195px;
+  left: 449px;
+  box-shadow: 10px 10px 0#e9e3d5;
+  border-radius: 30px;
+  background-color: #624cab;
+  width: 543px;
+  height: 593px;
+}
+.enter-email,
+.set-password {
+  position: absolute;
+  top: 412px;
+  left: 540px;
+  line-height: 130%;
+}
+.set-password {
+  top: 495px;
+}
+.already-have-an {
+  white-space: pre-wrap;
+}
+.login {
+  text-decoration: underline;
+  color: var(--color-linen);
+}
+.already-have-an-container {
+  position: absolute;
+  top: 587px;
+  left: 528px;
+  line-height: 130%;
+  display: inline-block;
+  width: 384px;
+}
+.signup {
+  position: absolute;
+  top: 308px;
+  left: 652px;
+  font-size: 55px;
+  line-height: 130%;
+  font-family: var(--font-trip-sans);
+  color: var(--color-linen);
+}
+.login-page-inner,
+.login-page-item {
+  border: 0;
+  outline: 0;
+  background-color: var(--color-linen);
+  position: absolute;
+  top: 431px;
+  left: 528px;
+  box-shadow: 6px 6px 0#110904;
+  border-radius: var(--br-3xs);
+  width: 384px;
+  height: 47px;
+}
+.login-page-inner {
+  top: 514px;
+}
+.group-icon,
+.makiarrow-icon {
+  position: absolute;
+  top: 529px;
+  left: 868px;
+  width: 21px;
+  height: 21px;
+  overflow: hidden;
+}
+.group-icon {
+  height: 2.87%;
+  width: 3.54%;
+  top: 71.58%;
+  right: 34.72%;
+  bottom: 25.54%;
+  left: 61.74%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.login-page {
+  width: 100%;
+  position: relative;
+  height: 1010px;
+  overflow: hidden;
+  background-image: url(./public/login-page@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: left;
+  font-size: var(--font-size-mini);
+  color: var(--color-gray);
+  font-family: var(--font-trip-sans-mono);
+}

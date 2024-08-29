@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-trip-sans: "Trip Sans";
+  --font-trip-sans-mono: "Trip Sans Mono";
+
+  /* font sizes */
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-linen: #e9e3d5;
+  --color-gray: #110904;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+}
