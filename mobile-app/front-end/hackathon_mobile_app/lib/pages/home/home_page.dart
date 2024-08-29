@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/data/articles.dart';
 import 'package:hackathon_mobile_app/data/e_books.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/articles_card.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/e_books_card.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/featured_courses_card.dart';
 import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:hackathon_mobile_app/utils/screen_measurements.dart';
@@ -124,28 +125,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                       itemBuilder: (context, index) {
                         final eachEbook = generalEBooks[index];
 
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: GestureDetector(
-                            onTap: () async {
-                              Uri url = Uri.parse(eachEbook["access_url"]);
-                              await launchUrl(
-                                url,
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blueGrey,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Image.network(
-                                eachEbook['url'],
-                                fit: BoxFit.fill,
-                                height: 20,
-                              ),
-                            ),
-                          ),
+                        return EBooksCard(
+                          eBookImageUrl: eachEbook['url'],
+                          eBookUrl: eachEbook["access_url"],
                         );
                       },
                     ),

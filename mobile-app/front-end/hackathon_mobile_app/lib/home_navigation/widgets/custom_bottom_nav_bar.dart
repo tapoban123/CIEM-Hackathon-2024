@@ -85,9 +85,12 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                       hintText: "Text it out",
                       suffixIcon: GestureDetector(
                         onTap: () {
-                          ref
-                              .read(communityMessagesProvider.notifier)
-                              .addNewMessage(messageTextController.text);
+                          if (messageTextController.text.isNotEmpty) {
+                            ref
+                                .read(communityMessagesProvider.notifier)
+                                .addNewMessage(messageTextController.text);
+                            messageTextController.clear();
+                          }
                         },
                         child: const Icon(
                           Icons.send_rounded,
@@ -128,6 +131,7 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: NavButton(
+                        isProfilePage: index == 3,
                         onTap: () => onNavButtonPressed(index),
                         buttonIcon: navButtonsIcons[index],
                         iconSize: index == widget.currentPage ? 28 : 24,

@@ -2,17 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
+import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
 
-void main() {
+void main() async {
+  await WidgetsFlutterBinding.ensureInitialized();
+
+  final providerContainer = ProviderContainer();
+
+  bool? isAuthenticated = await providerContainer
+      .read(localDatabaseServiceProvider.notifier)
+      .getData();
+
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    UncontrolledProviderScope(
+      container: providerContainer,
+      child: MyApp(
+        isAuthenticated: isAuthenticated ?? false,
+      ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isAuthenticated;
+
+  const MyApp({
+    super.key,
+    required this.isAuthenticated,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +57,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const LoginScreen(),
+      home: isAuthenticated ? BottomNavigationController() : LoginScreen(),
     );
   }
 }

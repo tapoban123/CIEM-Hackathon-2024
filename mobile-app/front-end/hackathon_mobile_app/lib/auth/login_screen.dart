@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
-import 'package:hackathon_mobile_app/utils/screen_measurements.dart';
+import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -92,39 +92,49 @@ class LoginScreen extends StatelessWidget {
                                       color: Colors.transparent,
                                     ),
                                   ),
-                                  suffixIcon: IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pushReplacement(
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation,
-                                                  secondaryAnimation) =>
-                                              const BottomNavigationController(),
-                                          transitionsBuilder: (context,
-                                              animation,
-                                              secondaryAnimation,
-                                              child) {
-                                            final tween = Tween(
-                                              begin: const Offset(1, 0),
-                                              end: Offset.zero,
-                                            ).chain(
-                                              CurveTween(
-                                                  curve: Curves.decelerate),
-                                            );
-                                            final position =
-                                                animation.drive(tween);
+                                  suffixIcon: Consumer(
+                                    builder: (context, ref, child) {
+                                      return IconButton(
+                                        onPressed: () {
+                                          ref
+                                              .read(localDatabaseServiceProvider
+                                                  .notifier)
+                                              .storeData(true);
+                                              
+                                          Navigator.of(context).pushReplacement(
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation,
+                                                      secondaryAnimation) =>
+                                                  const BottomNavigationController(),
+                                              transitionsBuilder: (context,
+                                                  animation,
+                                                  secondaryAnimation,
+                                                  child) {
+                                                final tween = Tween(
+                                                  begin: const Offset(1, 0),
+                                                  end: Offset.zero,
+                                                ).chain(
+                                                  CurveTween(
+                                                      curve: Curves.decelerate),
+                                                );
+                                                final position =
+                                                    animation.drive(tween);
 
-                                            return SlideTransition(
-                                              position: position,
-                                              child: child,
-                                            );
-                                          },
-                                          transitionDuration:
-                                              const Duration(milliseconds: 500),
-                                        ),
+                                                return SlideTransition(
+                                                  position: position,
+                                                  child: child,
+                                                );
+                                              },
+                                              transitionDuration:
+                                                  const Duration(
+                                                      milliseconds: 500),
+                                            ),
+                                          );
+                                        },
+                                        icon: const Icon(Icons.arrow_forward),
+                                        color: Colors.black,
                                       );
                                     },
-                                    icon: const Icon(Icons.arrow_forward),
-                                    color: Colors.black,
                                   ),
                                 ),
                                 style: Theme.of(context)

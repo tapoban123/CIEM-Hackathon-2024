@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
+import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
@@ -112,6 +113,10 @@ class EndDrawer extends ConsumerWidget {
                   ),
                   (route) => false,
                 );
+
+                ref
+                    .read(localDatabaseServiceProvider.notifier)
+                    .storeData(false);
               },
               child: const Text(
                 "Log Out",

@@ -87,7 +87,7 @@ class _BottomNavigationFuncState
 
     return Scaffold(
       key: ScaffoldKey.scaffoldKey,
-      endDrawer: const EndDrawer(),
+      endDrawer: currentPage != 1 ? const EndDrawer() : null,
       resizeToAvoidBottomInset: false,
       drawer: const CommunityDrawer(),
       extendBody: true,
