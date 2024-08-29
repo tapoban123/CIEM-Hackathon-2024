@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
@@ -85,10 +86,38 @@ class EndDrawer extends ConsumerWidget {
                 decoration: TextDecoration.underline,
               ),
             ),
-            const Text(
-              "Log Out",
-              style: TextStyle(
-                decoration: TextDecoration.underline,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const LoginScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      final tween = Tween(
+                        begin: const Offset(-1, 0),
+                        end: Offset.zero,
+                      ).chain(
+                        CurveTween(curve: Curves.decelerate),
+                      );
+
+                      final animationOffset = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: animationOffset,
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 300),
+                  ),
+                  (route) => false,
+                );
+              },
+              child: const Text(
+                "Log Out",
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                ),
               ),
             ),
             const Spacer(),

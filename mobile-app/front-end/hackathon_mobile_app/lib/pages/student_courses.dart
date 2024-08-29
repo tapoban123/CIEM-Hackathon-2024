@@ -66,7 +66,7 @@ class _StudentCoursesState extends ConsumerState<StudentCourses> {
                 itemCount: courses.length,
                 itemBuilder: (context, index) {
                   final eachCourse = courses[index];
-
+    
                   return GestureDetector(
                     onTap: () async {
                       Uri url = Uri.parse(eachCourse["url"]);

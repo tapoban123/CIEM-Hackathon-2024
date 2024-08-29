@@ -6,6 +6,7 @@ import 'package:hackathon_mobile_app/pages/community/community_page.dart';
 import 'package:hackathon_mobile_app/pages/community/widgets/community_app_bar.dart';
 import 'package:hackathon_mobile_app/pages/community/widgets/community_drawer.dart';
 import 'package:hackathon_mobile_app/pages/home/home_page.dart';
+import 'package:hackathon_mobile_app/pages/home/widgets/courses_search_bar.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/home_appbar.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/home_search_bar.dart';
 import 'package:hackathon_mobile_app/pages/notifications_page.dart';
@@ -23,7 +24,8 @@ class BottomNavigationController extends ConsumerStatefulWidget {
       _BottomNavigationFuncState();
 }
 
-class _BottomNavigationFuncState extends ConsumerState<BottomNavigationController> {
+class _BottomNavigationFuncState
+    extends ConsumerState<BottomNavigationController> {
   late int currentPage;
   double navButtonIconSize = 24;
   final FocusNode inputFocusNode = FocusNode();
@@ -52,11 +54,24 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationControlle
     }
   }
 
+  Widget? pageSpecificSearchBar() {
+    if (currentPage == 0) {
+      return HomeSearchBar(inputFocusNode: inputFocusNode);
+    } else if (currentPage == 4) {
+      return const CoursesSearchBar();
+    }
+    return null;
+  }
+
   double paddingFromTop() {
-    if (currentPage != 1) {
+    if (currentPage == 0) {
       return 260;
-    } else {
+    } else if (currentPage == 1) {
       return 180;
+    } else if (currentPage == 2) {
+      return 140;
+    } else {
+      return 200;
     }
   }
 
@@ -69,6 +84,7 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationControlle
     if (value == 0) {
       inputFocusNode.unfocus();
     }
+
     return Scaffold(
       key: ScaffoldKey.scaffoldKey,
       endDrawer: const EndDrawer(),
@@ -111,14 +127,12 @@ class _BottomNavigationFuncState extends ConsumerState<BottomNavigationControlle
                 ),
               ),
             ),
-            if (currentPage != 1)
+            if ([0, 2, 4].contains(currentPage))
               Positioned(
                 top: 130,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: HomeSearchBar(
-                    inputFocusNode: inputFocusNode,
-                  ),
+                  child: pageSpecificSearchBar(),
                 ),
               ),
             if (currentPage == 1)

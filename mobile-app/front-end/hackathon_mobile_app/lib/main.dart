@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
 
 void main() {
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const BottomNavigationController(),
+      home: const LoginScreen(),
     );
   }
 }

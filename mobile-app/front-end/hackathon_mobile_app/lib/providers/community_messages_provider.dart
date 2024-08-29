@@ -11,6 +11,7 @@ class CommunityMessagesProvider
     extends StateNotifier<List<Map<String, String>>> {
   CommunityMessagesProvider() : super([]) {
     communityMembers.shuffle();
+    getMessages();
   }
 
   late Map<String, String> messagesData;

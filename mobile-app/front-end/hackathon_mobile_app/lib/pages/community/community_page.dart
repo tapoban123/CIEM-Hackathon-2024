@@ -16,12 +16,6 @@ class _CommunityPageState extends ConsumerState<CommunityPage> {
   final ScrollController messagesScrollController = ScrollController();
 
   @override
-  void initState() {
-    ref.read(communityMessagesProvider.notifier).getMessages();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final communityMessages = ref.watch(communityMessagesProvider);
 
