@@ -57,8 +57,8 @@ class HomeAppbar extends StatelessWidget {
                 ScaffoldKey.scaffoldKey.currentState!.openEndDrawer();
               },
               child: SizedBox(
-                width: 30,
-                height: 30,
+                width: 42,
+                height: 42,
                 child: SvgPicture.asset(
                   "assets/images/jam_menu.svg",
                   height: 15,

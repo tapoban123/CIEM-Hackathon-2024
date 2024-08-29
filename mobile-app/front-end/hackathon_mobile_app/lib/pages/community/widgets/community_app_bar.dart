@@ -29,8 +29,8 @@ class CommunityAppBar extends ConsumerWidget {
                 );
               },
               child: SizedBox(
-                width: 40,
-                height: 40,
+                width: 42,
+                height: 42,
                 child: SvgPicture.asset(
                   "assets/images/jam_menu.svg",
                   height: 15,

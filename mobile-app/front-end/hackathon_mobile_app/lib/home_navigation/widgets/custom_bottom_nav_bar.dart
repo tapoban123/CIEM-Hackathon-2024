@@ -5,6 +5,7 @@ import 'package:hackathon_mobile_app/home_navigation/widgets/nav_button.dart';
 import 'package:hackathon_mobile_app/providers/community_messages_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/providers/other_providers.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 class CustomBottomNavBar extends ConsumerStatefulWidget {
   final int currentPage;
@@ -92,14 +93,17 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                             messageTextController.clear();
                           }
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.send_rounded,
-                          color: Colors.black,
+                          color: CustomColors.darkTextColor,
                         ),
                       ),
-                      hintStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.5),
-                      ),
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .displayMedium!
+                          .copyWith(
+                            color: CustomColors.darkTextColor.withOpacity(0.5),
+                          ),
                       contentPadding: const EdgeInsets.only(
                         left: 25,
                         top: 15,
@@ -115,7 +119,10 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                         },
                       );
                     },
-                    style: const TextStyle(color: Colors.black),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(color: CustomColors.darkTextColor),
                   ),
                 ),
               Expanded(

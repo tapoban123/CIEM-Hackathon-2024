@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 class MessageCard extends StatelessWidget {
   final String avatarUrl;
@@ -44,7 +45,7 @@ class MessageCard extends StatelessWidget {
               Text(
                 name,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      color: Colors.black,
+                      color: CustomColors.darkTextColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
@@ -52,7 +53,7 @@ class MessageCard extends StatelessWidget {
               Text(
                 message,
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      color: Colors.black,
+                      color: CustomColors.darkTextColor,
                     ),
                 textAlign: currentUserMessage ? TextAlign.end : TextAlign.start,
               ),

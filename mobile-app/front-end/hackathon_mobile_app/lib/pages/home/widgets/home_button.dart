@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 class HomeButton extends StatelessWidget {
   final String buttonText;
@@ -34,8 +35,8 @@ class HomeButton extends StatelessWidget {
       child: Text(
         buttonText,
         textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.black,
+        style:  TextStyle(
+          color: CustomColors.darkTextColor,
           fontSize: 10,
         ),
       ),

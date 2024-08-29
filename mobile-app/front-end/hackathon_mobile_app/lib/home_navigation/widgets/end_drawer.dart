@@ -2,12 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
-import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
+import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
 class EndDrawer extends ConsumerWidget {
   const EndDrawer({super.key});
+
+  void logOut(BuildContext context, WidgetRef ref) {
+    Navigator.of(context).pushAndRemoveUntil(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const LoginScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final tween = Tween(
+            begin: const Offset(-1, 0),
+            end: Offset.zero,
+          ).chain(
+            CurveTween(curve: Curves.decelerate),
+          );
+
+          final animationOffset = animation.drive(tween);
+
+          return SlideTransition(
+            position: animationOffset,
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
+      ),
+      (route) => false,
+    );
+
+    ref.read(localDatabaseServiceProvider.notifier).storeData(false);
+  }
+
+  void navigateToCourses(WidgetRef ref) {
+    ref.read(navigationProvider.notifier).navigateToPage(4);
+    ScaffoldKey.scaffoldKey.currentState!.closeEndDrawer();
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,23 +79,38 @@ class EndDrawer extends ConsumerWidget {
               "Resources",
               style: textStyle.copyWith(fontSize: 26),
             ),
-            GestureDetector(
-              onTap: () {
-                ref.read(navigationProvider.notifier).navigateToPage(4);
-                ScaffoldKey.scaffoldKey.currentState!.closeEndDrawer();
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: GestureDetector(
+                onTap: () => navigateToCourses(ref),
+                child: Text(
+                  "Courses",
+                  style: textStyle.copyWith(
+                    decoration: TextDecoration.underline,
+                    letterSpacing: 1.5,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
               child: Text(
-                "Courses",
-                style: textStyle.copyWith(decoration: TextDecoration.underline),
+                "E-Books",
+                style: textStyle.copyWith(
+                  decoration: TextDecoration.underline,
+                  letterSpacing: 1.5,
+                  fontSize: 15,
+                ),
               ),
             ),
             Text(
-              "E-Books",
-              style: textStyle.copyWith(decoration: TextDecoration.underline),
-            ),
-            Text(
               "Articles",
-              style: textStyle.copyWith(decoration: TextDecoration.underline),
+              style: textStyle.copyWith(
+                decoration: TextDecoration.underline,
+                letterSpacing: 1.5,
+                fontSize: 15,
+              ),
             ),
             const SizedBox(
               height: 15,
@@ -71,48 +119,40 @@ class EndDrawer extends ConsumerWidget {
               "Settings",
               style: textStyle.copyWith(fontSize: 26),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Text(
               "Theme",
-              style: textStyle.copyWith(decoration: TextDecoration.underline),
+              style: textStyle.copyWith(
+                decoration: TextDecoration.underline,
+                letterSpacing: 1.5,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(
+              height: 3,
             ),
             Text(
               "Retake the Quiz",
-              style: textStyle.copyWith(decoration: TextDecoration.underline),
+              style: textStyle.copyWith(
+                decoration: TextDecoration.underline,
+                letterSpacing: 1.5,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(
+              height: 3,
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const LoginScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      final tween = Tween(
-                        begin: const Offset(-1, 0),
-                        end: Offset.zero,
-                      ).chain(
-                        CurveTween(curve: Curves.decelerate),
-                      );
-
-                      final animationOffset = animation.drive(tween);
-
-                      return SlideTransition(
-                        position: animationOffset,
-                        child: child,
-                      );
-                    },
-                    transitionDuration: const Duration(milliseconds: 300),
-                  ),
-                  (route) => false,
-                );
-
-                ref
-                    .read(localDatabaseServiceProvider.notifier)
-                    .storeData(false);
-              },
+              onTap: () => logOut(context, ref),
               child: Text(
                 "Log Out",
-                style: textStyle.copyWith(decoration: TextDecoration.underline),
+                style: textStyle.copyWith(
+                  decoration: TextDecoration.underline,
+                  letterSpacing: 1.5,
+                  fontSize: 15,
+                ),
               ),
             ),
             const Spacer(),

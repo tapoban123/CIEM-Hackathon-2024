@@ -1,10 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
-import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
+import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  void navigateToHome(WidgetRef ref) {
+    ref.read(localDatabaseServiceProvider.notifier).storeData(true);
+
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const BottomNavigationController(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final tween = Tween(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).chain(
+            CurveTween(curve: Curves.decelerate),
+          );
+          final position = animation.drive(tween);
+
+          return SlideTransition(
+            position: position,
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +63,8 @@ class LoginScreen extends StatelessWidget {
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
-                    offset: Offset(5, 5.5),
-                    blurRadius: 4,
+                    offset: Offset(6.5, 6.5),
+                    // blurRadius: 4,
                     spreadRadius: 3,
                   ),
                 ],
@@ -61,16 +93,6 @@ class LoginScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Enter Passkey",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                  ),
-                            ),
                             const SizedBox(
                               height: 3,
                             ),
@@ -86,6 +108,13 @@ class LoginScreen extends StatelessWidget {
                                       color: Colors.transparent,
                                     ),
                                   ),
+                                  hintText: "Enter passkey",
+                                  hintStyle: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(
+                                          color: CustomColors.darkTextColor
+                                              .withOpacity(0.5)),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: const BorderSide(
@@ -95,53 +124,20 @@ class LoginScreen extends StatelessWidget {
                                   suffixIcon: Consumer(
                                     builder: (context, ref, child) {
                                       return IconButton(
-                                        onPressed: () {
-                                          ref
-                                              .read(localDatabaseServiceProvider
-                                                  .notifier)
-                                              .storeData(true);
-                                              
-                                          Navigator.of(context).pushReplacement(
-                                            PageRouteBuilder(
-                                              pageBuilder: (context, animation,
-                                                      secondaryAnimation) =>
-                                                  const BottomNavigationController(),
-                                              transitionsBuilder: (context,
-                                                  animation,
-                                                  secondaryAnimation,
-                                                  child) {
-                                                final tween = Tween(
-                                                  begin: const Offset(1, 0),
-                                                  end: Offset.zero,
-                                                ).chain(
-                                                  CurveTween(
-                                                      curve: Curves.decelerate),
-                                                );
-                                                final position =
-                                                    animation.drive(tween);
-
-                                                return SlideTransition(
-                                                  position: position,
-                                                  child: child,
-                                                );
-                                              },
-                                              transitionDuration:
-                                                  const Duration(
-                                                      milliseconds: 500),
-                                            ),
-                                          );
-                                        },
+                                        onPressed: () => navigateToHome(ref),
                                         icon: const Icon(Icons.arrow_forward),
-                                        color: Colors.black,
+                                        color: CustomColors.darkTextColor,
                                       );
                                     },
                                   ),
                                 ),
+                                keyboardType: TextInputType.text,
+                                textInputAction: TextInputAction.done,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium!
                                     .copyWith(
-                                      color: Colors.black,
+                                      color: CustomColors.darkTextColor,
                                       decoration: TextDecoration.none,
                                     ),
                               ),
@@ -163,7 +159,7 @@ class LoginScreen extends StatelessWidget {
                                         .textTheme
                                         .displaySmall!
                                         .copyWith(
-                                          color: Colors.black,
+                                          color: CustomColors.darkTextColor,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),

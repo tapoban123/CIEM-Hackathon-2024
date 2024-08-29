@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EBooksCard extends StatelessWidget {
@@ -57,7 +58,7 @@ class EBooksCard extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: CustomColors.orangeColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -65,7 +66,12 @@ class EBooksCard extends StatelessWidget {
                       ),
                       child: Text(
                         "Read the book",
-                        style: Theme.of(context).textTheme.displayMedium,
+                        style:
+                            Theme.of(context).textTheme.displayMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.4,
+                                  color: CustomColors.whiteColor,
+                                ),
                       ),
                     ),
                   ],

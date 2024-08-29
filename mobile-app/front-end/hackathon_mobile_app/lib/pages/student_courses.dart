@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/data/courses.dart';
 import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StudentCourses extends ConsumerStatefulWidget {
@@ -46,12 +47,12 @@ class _StudentCoursesState extends ConsumerState<StudentCourses> {
             const SizedBox(
               height: 12,
             ),
-            const Expanded(
+            Expanded(
               flex: 1,
               child: Text(
                 "Courses for You",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: CustomColors.darkTextColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                 ),
@@ -91,18 +92,18 @@ class _StudentCoursesState extends ConsumerState<StudentCourses> {
                         children: [
                           Text(
                             eachCourse["title"]!,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
-                              color: Colors.black,
+                              color: CustomColors.darkTextColor,
                             ),
                           ),
                           Text(
                             eachCourse["subtitle"]!,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.normal,
-                              color: Colors.black,
+                              color: CustomColors.darkTextColor,
                             ),
                           ),
                         ],

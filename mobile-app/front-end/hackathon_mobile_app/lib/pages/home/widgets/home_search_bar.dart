@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/home_button.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 class HomeSearchBar extends StatelessWidget {
   final FocusNode inputFocusNode;
@@ -26,9 +27,8 @@ class HomeSearchBar extends StatelessWidget {
         boxShadow: const [
           BoxShadow(
             color: Colors.black,
-            blurRadius: 2.6,
             offset: Offset(3, 5),
-            spreadRadius: 1,
+            spreadRadius: 1.4,
           ),
         ],
         color: Colors.white,
@@ -43,7 +43,7 @@ class HomeSearchBar extends StatelessWidget {
               focusedBorder: textFieldBorder,
               hintText: "Search resources",
               hintStyle: TextStyle(
-                color: Colors.black.withOpacity(0.3),
+                color: CustomColors.darkTextColor.withOpacity(0.3),
               ),
               contentPadding: const EdgeInsets.only(top: 14),
               prefixIcon: const Icon(CupertinoIcons.search),
@@ -58,10 +58,10 @@ class HomeSearchBar extends StatelessWidget {
                 ),
               ),
             ),
-            style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black,
+            style: TextStyle(color: CustomColors.darkTextColor),
+            cursorColor: CustomColors.darkTextColor,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(
               left: 5.0,
               top: 18,
@@ -73,7 +73,7 @@ class HomeSearchBar extends StatelessWidget {
                   "Recommended",
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.black,
+                    color: CustomColors.darkTextColor,
                   ),
                 ),
                 Row(
@@ -81,21 +81,21 @@ class HomeSearchBar extends StatelessWidget {
                   children: [
                     HomeButton(
                       buttonText: "Design",
-                      buttonColor: Color(0xffff7340),
+                      buttonColor: CustomColors.orangeColor,
                     ),
                     SizedBox(
                       width: 8,
                     ),
                     HomeButton(
                       buttonText: "Psychology",
-                      buttonColor: Color(0xff25c3db),
+                      buttonColor: CustomColors.lightBlueColor,
                     ),
                     SizedBox(
                       width: 8,
                     ),
                     HomeButton(
                       buttonText: "Architecture",
-                      buttonColor: Color(0xffAB9AE2),
+                      buttonColor: CustomColors.violetColor,
                     ),
                   ],
                 )

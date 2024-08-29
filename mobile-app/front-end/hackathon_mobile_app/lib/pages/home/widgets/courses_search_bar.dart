@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 class CoursesSearchBar extends StatelessWidget {
   const CoursesSearchBar({super.key});
@@ -28,7 +29,7 @@ class CoursesSearchBar extends StatelessWidget {
           focusedBorder: InputBorder.none,
           hintText: "Search resources",
           hintStyle: TextStyle(
-            color: Colors.black.withOpacity(0.3),
+            color: CustomColors.darkTextColor.withOpacity(0.3),
           ),
           contentPadding: const EdgeInsets.only(top: 14),
           prefixIcon: const Icon(CupertinoIcons.search),
@@ -43,8 +44,8 @@ class CoursesSearchBar extends StatelessWidget {
             ),
           ),
         ),
-        style: const TextStyle(color: Colors.black),
-        cursorColor: Colors.black,
+        style: TextStyle(color: CustomColors.darkTextColor),
+        cursorColor: CustomColors.darkTextColor,
       ),
     );
   }

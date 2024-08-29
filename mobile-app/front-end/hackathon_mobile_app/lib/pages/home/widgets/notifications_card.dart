@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 import 'package:hackathon_mobile_app/utils/screen_measurements.dart';
 
 class NotificationsCard extends StatelessWidget {
@@ -44,7 +45,7 @@ class NotificationsCard extends StatelessWidget {
                 child: Text(
                   notificationMessage,
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        color: Colors.black,
+                        color: CustomColors.darkTextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -65,7 +66,7 @@ class NotificationsCard extends StatelessWidget {
                     Text(
                       receivedDate,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: Colors.black.withOpacity(0.5),
+                            color: CustomColors.darkTextColor.withOpacity(0.5),
                             fontSize: 10,
                           ),
                     ),

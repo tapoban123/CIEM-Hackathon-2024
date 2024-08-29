@@ -89,7 +89,7 @@ class _BottomNavigationFuncState
       key: ScaffoldKey.scaffoldKey,
       endDrawer: currentPage != 1 ? const EndDrawer() : null,
       resizeToAvoidBottomInset: false,
-      drawer: const CommunityDrawer(),
+      drawer: currentPage == 1 ? const CommunityDrawer() : null,
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,

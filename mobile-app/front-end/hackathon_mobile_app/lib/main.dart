@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
-import 'package:hackathon_mobile_app/local_database/local_database_service.dart';
+import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
+import 'package:hackathon_mobile_app/theme/colors.dart';
 
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Hackathon Mobile App",
       theme: ThemeData.dark(useMaterial3: true).copyWith(
-        textTheme: const TextTheme(
+        textTheme:  TextTheme(
           displaySmall: TextStyle(
             fontFamily: "TripSans",
             fontSize: 12,
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
             fontSize: 24,
             letterSpacing: 0.5,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color:  CustomColors.darkTextColor,
           ),
         ),
       ),
