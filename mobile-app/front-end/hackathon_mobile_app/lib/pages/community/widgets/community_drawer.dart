@@ -7,7 +7,6 @@ class CommunityDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      
       width: 250,
       backgroundColor: const Color(0xffFF7340),
       child: Padding(

@@ -121,9 +121,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                     height: 250,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: generalEBooks.length,
+                      itemCount: eBooks.length,
                       itemBuilder: (context, index) {
-                        final eachEbook = generalEBooks[index];
+                        final eachEbook = eBooks[index];
 
                         return EBooksCard(
                           eBookImageUrl: eachEbook['url'],

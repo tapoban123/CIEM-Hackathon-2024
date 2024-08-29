@@ -11,6 +11,8 @@ class EndDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final TextStyle textStyle = Theme.of(context).textTheme.displaySmall!;
+
     return Drawer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -40,52 +42,42 @@ class EndDrawer extends ConsumerWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text(
+            Text(
               "Resources",
-              style: TextStyle(fontSize: 26),
+              style: textStyle.copyWith(fontSize: 26),
             ),
             GestureDetector(
               onTap: () {
                 ref.read(navigationProvider.notifier).navigateToPage(4);
                 ScaffoldKey.scaffoldKey.currentState!.closeEndDrawer();
               },
-              child: const Text(
+              child: Text(
                 "Courses",
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
+                style: textStyle.copyWith(decoration: TextDecoration.underline),
               ),
             ),
-            const Text(
+            Text(
               "E-Books",
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-              ),
+              style: textStyle.copyWith(decoration: TextDecoration.underline),
             ),
-            const Text(
+            Text(
               "Articles",
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-              ),
+              style: textStyle.copyWith(decoration: TextDecoration.underline),
             ),
             const SizedBox(
               height: 15,
             ),
-            const Text(
+            Text(
               "Settings",
-              style: TextStyle(fontSize: 26),
+              style: textStyle.copyWith(fontSize: 26),
             ),
-            const Text(
+            Text(
               "Theme",
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-              ),
+              style: textStyle.copyWith(decoration: TextDecoration.underline),
             ),
-            const Text(
+            Text(
               "Retake the Quiz",
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-              ),
+              style: textStyle.copyWith(decoration: TextDecoration.underline),
             ),
             GestureDetector(
               onTap: () {
@@ -118,11 +110,9 @@ class EndDrawer extends ConsumerWidget {
                     .read(localDatabaseServiceProvider.notifier)
                     .storeData(false);
               },
-              child: const Text(
+              child: Text(
                 "Log Out",
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
+                style: textStyle.copyWith(decoration: TextDecoration.underline),
               ),
             ),
             const Spacer(),
