@@ -1,72 +1,161 @@
 import streamlit as st
 import pickle
 import numpy as np
+from scipy.special import expit
 
 # Load the scaler, model, and class names
-scaler = pickle.load(open("ml_model/scaler.pkl", 'rb'))
-model = pickle.load(open("ml_model/model.pkl", 'rb'))
-class_names = ['Lawyer', 'Doctor', 'Government Officer', 'Artist', 'Unknown',
-               'Software Engineer', 'Teacher', 'Business Owner', 'Scientist',
-               'Banker', 'Writer', 'Accountant', 'Designer',
-               'Construction Engineer', 'Game Developer', 'Stock Investor',
-               'Real Estate Developer']
+scaler1 = pickle.load(open("scaler1.pkl", 'rb'))
+model1 = pickle.load(open("model1.pkl", 'rb'))
+class_names = ['Lawyer', 'Doctor', 'Government Officer', 'Artist', 'Finance Officer',
+                'Software Engineer', 'Teacher', 'Business Owner', 'Scientist',
+                'Banker', 'Writer', 'Accountant', 'Designer', 'Construction Engineer',
+                'Game Developer', 'Stock Investor', 'Real Estate Developer', 'Programmer',
+                'Ethical Hacker', 'ML Engineer', 'Data Analyst', 'Stock Investor', 'Unknown']
 
-def Recommendations(gender, part_time_job, absence_days, extracurricular_activities,
-                    weekly_self_study_hours, math_score, history_score, physics_score,
-                    chemistry_score, biology_score, english_score, geography_score,
-                    total_score,average_score):
-    
-    # Encode categorical variables
-    gender_encoded = 1 if gender.lower() == 'female' else 0
-    part_time_job_encoded = 1 if part_time_job else 0
-    extracurricular_activities_encoded = 1 if extracurricular_activities else 0
-    
+def calculate_scores(user_answers, correct_answers):
+    scores = {}
+    for category in user_answers:
+        correct_count = sum(1 for i, answer in enumerate(user_answers[category]) if answer == correct_answers[category][i])
+        scores[category] = correct_count * 20
+    return scores
+
+def Recommendations(math_score, aptitude_score, science_score,
+                    logical_score, verbal_score):
     # Create feature array
-    feature_array = np.array([[gender_encoded, part_time_job_encoded, absence_days, extracurricular_activities_encoded,
-                               weekly_self_study_hours, math_score, history_score, physics_score,
-                               chemistry_score, biology_score, english_score, geography_score,total_score,average_score]])
+    feature_array = np.array([[math_score, aptitude_score, science_score,
+                              logical_score, verbal_score]])
     
     # Scale features
-    scaled_features = scaler.transform(feature_array)
+    scaled_features = scaler1.transform(feature_array)
+    decision_scores = model1.decision_function(scaled_features)
     
-    # Predict using the model
-    probabilities = model.predict_proba(scaled_features)
+    # Convert decision scores to probabilities
+    probabilities = expit(decision_scores)
     
-    # Get top five predicted classes along with their probabilities
-    top_classes_idx = np.argsort(-probabilities[0])[:5]
+    # Get top three predicted classes along with their probabilities
+    top_classes_idx = np.argsort(-probabilities[0])[:3]
     top_classes_names_probs = [(class_names[idx], probabilities[0][idx]) for idx in top_classes_idx]
     
     return top_classes_names_probs
 
-# Streamlit app
-st.title("Career Recommendation System")
-
-# User inputs
-gender = st.selectbox("Gender", ["Male", "Female"])
-part_time_job = st.checkbox("Part-time Job")
-absence_days = st.slider("Absence Days", 0, 100, 0)
-extracurricular_activities = st.checkbox("Extracurricular Activities")
-weekly_self_study_hours = st.slider("Weekly Self Study Hours", 0, 40, 0)
-math_score = st.slider("Math Score", 0, 100, 0)
-history_score = st.slider("History Score", 0, 100, 0)
-physics_score = st.slider("Physics Score", 0, 100, 0)
-chemistry_score = st.slider("Chemistry Score", 0, 100, 0)
-biology_score = st.slider("Biology Score", 0, 100, 0)
-english_score = st.slider("English Score", 0, 100, 0)
-geography_score = st.slider("Geography Score", 0, 100, 0)
-
-# Calculated fields
-total_score = math_score + history_score + physics_score + chemistry_score + biology_score + english_score + geography_score
-average_score = total_score / 7
-
-if st.button("Get Recommendations"):
-    recommendations = Recommendations(gender, part_time_job, absence_days, extracurricular_activities,
-                                      weekly_self_study_hours, math_score, history_score, physics_score,
-                                      chemistry_score, biology_score, english_score, geography_score,
-                                      total_score, average_score)
+def main():
+    st.title("Career Recommendation App")
+    st.write("Answer the following questions to get career recommendations.")
     
-    st.subheader("Top 5 Career Recommendations")
-    for career, prob in recommendations:
-        st.write(f"{career}: {prob*100:.2f}%")
+    # Define questions and text options
+    questions = {
+        'maths': [
+            "What is your answer to 2*3?",
+            "What is your answer to 5*4?",
+            "What is your answer to 6*3",
+            "What is your answer to 7*4",
+            "What is your answer to 10*9",
+        ],
+        'aptitude': [
+            "What was the day of the week on 28th May, 2006?",
+            "What was the day of the week on 17th June, 1998?",
+            "What will be the day of the week 15th August, 2010?",
+            "Today is Monday. After 61 days, it will be:",
+            '''If 6th March, 2005 is Monday, what was the day of the week on 6th March, 2004?'''
+,
+        ],
+        'science': [
+            "What does DNA stand for?",
+            "Which is hardest natural substance on Earth",
+            "What is the extension of an excel file",
+            "What is the full form of CPU?",
+            "Who is known as the father of the computer?",
+        ],
+        'logical': [
+            "If you have three apples and four oranges in one hand and four apples and three oranges in the other hand, what do you have?",
+            "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?",
+            "You are in a dark room with a candle, a wood stove, and a gas lamp. You only have one match, so what do you light first?",
+            "If you are running a race and pass the person in second place, what place are you in now?",
+            "How many times can you subtract 10 from 100?",
+        ],
+        'verbal': [
+            "What is the synonym of CORPULENT",
+            "What is antonym of ENORMOUS?",
+            "Choose the correct meaning of idiom 'To keeps one's temper'",
+            "What is the passive voice of 'After driving professor Kumar to the museum she dropped him at his hotel'.",
+            "Fill the blanks Fate smiles ...... those who untiringly grapple with stark realities of life.",
+        ]
+    }
 
+    options = {
+        'maths': ['6', '20', '18','28','90'],
+        'aptitude': ['Sunday', 'Wednesday', 'Sunday','Saturday','Sunday'],
+        'science': ['DeoxyRiboNucleicAcid', 'Diamond', '.xlsx','Central Processing Unit','Charles Babbage'],
+        'logical': ['Big hands', '5 minutes', 'match','Second place','Once'],
+        'verbal': ['Obese', 'Tiny', 'To be in good mood','After being driven to the museum, Professor Kumar was dropped at his hotel.','on']
+    }
+    
+    # Initialize answers
+    user_answers = {'maths': [], 'aptitude': [], 'science': [], 'logical': [], 'verbal': []}
+    
+    # Collect user responses
+    for category in options:
+        st.write(f"### {category.capitalize()} Questions:")
+        for idx, question in enumerate(questions[category]):
+            # Display text question and options
+            answer = st.selectbox(question, options[category], index=0, key=f"{category}_{idx}")
+            user_answers[category].append(answer)
+    
+    # Calculate scores and make recommendations
+    if st.button('Get Recommendations'):
+        # Example correct answers for testing
+        correct_answers = {
+            'maths': ['6', '20', '18','28','90'],
+            'aptitude': ['Sunday', 'Wednesday', 'Sunday','Saturday','Sunday'],
+            'science': ['DeoxyRiboNucleicAcid', 'Diamond', '.xlsx','Central Processing Unit','Charles Babbage'],
+            'logical': ['Big hands', '5 minutes', 'match','Second place','Once'],
+            'verbal': ['Obese', 'Tiny', 'To be in good mood','After being driven to the museum, Professor Kumar was dropped at his hotel.','on']
+        }
+        
+        # Calculate scores
+        scores = calculate_scores(user_answers, correct_answers)
+        
+        # Extract scores for the recommendation function
+        math_score = scores.get('maths', 0)
+        aptitude_score = scores.get('aptitude', 0)
+        science_score = scores.get('science', 0)
+        logical_score = scores.get('logical', 0)
+        verbal_score = scores.get('verbal', 0)
+        
+        # Display scores
+        st.write("### Your Scores:")
+        st.write(f"**Maths Score:** {math_score}")
+        st.write(f"**Aptitude Score:** {aptitude_score}")
+        st.write(f"**Science Score:** {science_score}")
+        st.write(f"**Logical Score:** {logical_score}")
+        st.write(f"**Verbal Score:** {verbal_score}")
+        recommendations=[]
+        # Get recommendations
+        recommendations = Recommendations(math_score, aptitude_score, science_score, logical_score, verbal_score)
+        
+        # Display recommendations
+        st.write("### Career Recommendations:")
+        for recommendation in recommendations:
+            st.write(f"**Congratulations, Career you should opt for :** {recommendation[0]}")
+        
 
+        st.markdown(
+    """
+    <a href="http://127.0.0.1:5500/index.html" target="_self">
+        <button style="background-color: #07092e; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
+            Back to Frontend
+        </button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+    # def save_recommendations_to_file(recommendations, file_path='recommendations.txt'):
+    #     with open(file_path, 'w') as file:
+    #         for recommendation in recommendations:
+    #             file.write(f"Congratulations, Career you should opt for : {recommendation[0]}\n")
+    # if st.button('Save Recommendations'):
+    #     save_recommendations_to_file(recommendations)
+    #     st.write("Career recommendations have been saved to 'recommendations.txt'.")
+
+if __name__ == "__main__":
+    main()
