@@ -2,14 +2,14 @@
 
 Xplore is a project that helps each and every student to find their passion and grow with all the resources they need.
 
-### What we have in our project
+### What we have in our project:
 
 - A Website
 - Machine learning models
 - A mobile application
 - An AI-integrated chatbot
 
-### Working
+### Working:
 
 Our website, requires the student to take a test that, with the help of our machine learning models, finds the exact profession that is most suitable for the student. Our mobile application provide the students with all the free resources available on the web, which includes free courses, ebooks and articles.
 
