@@ -1,4 +1,5 @@
-# Xplore (PROJECT FOR [SIH](https://www.sih.gov.in/) INTERNAL HACKTHON) 
+# Xplore 
+## PROJECT FOR [SIH](https://www.sih.gov.in/) INTERNAL HACKTHON
 
 Xplore is a project that helps each and every student to find their passion and grow with all the resources they need.
 
