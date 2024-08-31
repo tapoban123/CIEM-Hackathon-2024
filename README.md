@@ -4,6 +4,10 @@
 
 Xplore is a project that helps each and every student to find their passion and grow with all the resources they need.
 
+### SIH Problem Statement
+
+Develop Effective Career Counselling and Guidance Programs in Schools to Enhance Student Career Choices. 
+
 ### What we have in our project:
 
 - Intuitive UI/UX design ([View the Design](UI-UX))
