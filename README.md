@@ -9,7 +9,7 @@ Xplore is a project that helps each and every student to find their passion and 
 - Intuitive UI/UX design ([View the Design](UI-UX))
 - A Website ([View the Code](web))
 - Machine learning models ([View the Code](ml_model))
-- A mobile application ([View the Code](mobile-app\front-end\hackathon_mobile_app\lib\\))
+- A mobile application ([View the Code](mobile-app/front-end/hackathon_mobile_app/lib))
 - An AI-integrated chatbot
 
 ### Working:
