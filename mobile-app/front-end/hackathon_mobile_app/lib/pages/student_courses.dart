@@ -45,21 +45,20 @@ class _StudentCoursesState extends ConsumerState<StudentCourses> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 12,
+              height: 18,
             ),
             Expanded(
               flex: 1,
               child: Text(
                 "Courses for You",
-                style: TextStyle(
-                  color: CustomColors.darkTextColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: 25),
               ),
             ),
             Expanded(
-              flex: 10,
+              flex: 15,
               child: ListView.builder(
                 controller: coursesPageController,
                 padding: const EdgeInsets.only(top: 0),
@@ -67,7 +66,7 @@ class _StudentCoursesState extends ConsumerState<StudentCourses> {
                 itemCount: courses.length,
                 itemBuilder: (context, index) {
                   final eachCourse = courses[index];
-    
+
                   return GestureDetector(
                     onTap: () async {
                       Uri url = Uri.parse(eachCourse["url"]);

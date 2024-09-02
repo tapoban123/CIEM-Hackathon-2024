@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
+import 'package:hackathon_mobile_app/utils/enums.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
 class EndDrawer extends ConsumerWidget {
@@ -37,8 +38,8 @@ class EndDrawer extends ConsumerWidget {
     ref.read(localDatabaseServiceProvider.notifier).storeData(false);
   }
 
-  void navigateToCourses(WidgetRef ref) {
-    ref.read(navigationProvider.notifier).navigateToPage(4);
+  void navigateToCourses(WidgetRef ref, int pageNumber) {
+    ref.read(navigationProvider.notifier).navigateToPage(pageNumber);
     ScaffoldKey.scaffoldKey.currentState!.closeEndDrawer();
   }
 
@@ -82,7 +83,7 @@ class EndDrawer extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: GestureDetector(
-                onTap: () => navigateToCourses(ref),
+                onTap: () => navigateToCourses(ref, PageNumber.coursesPage),
                 child: Text(
                   "Courses",
                   style: textStyle.copyWith(
@@ -95,12 +96,17 @@ class EndDrawer extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
-              child: Text(
-                "E-Books",
-                style: textStyle.copyWith(
-                  decoration: TextDecoration.underline,
-                  letterSpacing: 1.5,
-                  fontSize: 15,
+              child: GestureDetector(
+                onTap: () {
+                  navigateToCourses(ref, PageNumber.ebooksPage);
+                },
+                child: Text(
+                  "E-Books",
+                  style: textStyle.copyWith(
+                    decoration: TextDecoration.underline,
+                    letterSpacing: 1.5,
+                    fontSize: 15,
+                  ),
                 ),
               ),
             ),

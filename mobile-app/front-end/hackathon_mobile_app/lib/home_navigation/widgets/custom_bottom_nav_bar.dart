@@ -133,7 +133,7 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                   separatorBuilder: (context, index) => const SizedBox(
                     width: 15,
                   ),
-                  itemCount: widget.pages.length - 1,
+                  itemCount: widget.pages.length - 2,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),

@@ -1,10 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/theme/colors.dart';
 
-class CoursesSearchBar extends StatelessWidget {
-  const CoursesSearchBar({super.key});
+class OnlySearchBar extends ConsumerStatefulWidget {
+  const OnlySearchBar({super.key});
+
+  @override
+  ConsumerState<OnlySearchBar> createState() => _OnlySearchBarState();
+}
+
+class _OnlySearchBarState extends ConsumerState<OnlySearchBar> {
+  final TextEditingController _homeSearchController = TextEditingController();
+  final TextEditingController _coursesSearchController =
+      TextEditingController();
+  final TextEditingController _ebooksSearchController = TextEditingController();
+
+  // TextEditingController? pageSpecificTextController() {
+  //   int _currentPage = ref.read(navigationProvider);
+
+  //   if (_currentPage == 0) {
+  //     return _homeSearchController;
+  //   } else if (_currentPage == 4) {
+  //     return _coursesSearchController;
+  //   } else if (_currentPage == 5) {
+  //     return _ebooksSearchController;
+  //   }
+  //   return null;
+  // }
+
+  @override
+  void dispose() {
+    // pageSpecificTextController()?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +54,7 @@ class CoursesSearchBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
       ),
       child: TextFormField(
+        // controller: pageSpecificTextController(),
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
@@ -31,7 +62,7 @@ class CoursesSearchBar extends StatelessWidget {
           hintStyle: TextStyle(
             color: CustomColors.darkTextColor.withOpacity(0.3),
           ),
-          contentPadding: const EdgeInsets.only(top: 14),
+          contentPadding: const EdgeInsets.only(top: 12),
           prefixIcon: const Icon(CupertinoIcons.search),
           suffixIcon: Container(
             alignment: Alignment.center,

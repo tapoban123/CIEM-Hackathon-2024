@@ -35,4 +35,39 @@ List<Map<String, dynamic>> eBooks = [
     "access_url":
         "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
   },
+  {
+    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "url":
+        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+    "access_url":
+        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+  },
+  {
+    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "url":
+        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+    "access_url":
+        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+  },
+  {
+    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "url":
+        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+    "access_url":
+        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+  },
+  {
+    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "url":
+        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+    "access_url":
+        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+  },
+  {
+    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "url":
+        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+    "access_url":
+        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+  },
 ];

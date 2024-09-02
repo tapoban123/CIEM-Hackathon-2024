@@ -12,8 +12,10 @@ import 'package:hackathon_mobile_app/pages/home/widgets/home_search_bar.dart';
 import 'package:hackathon_mobile_app/pages/notifications_page.dart';
 import 'package:hackathon_mobile_app/pages/profile_page.dart';
 import 'package:hackathon_mobile_app/pages/student_courses.dart';
+import 'package:hackathon_mobile_app/pages/student_ebooks_page.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
+import 'package:hackathon_mobile_app/utils/enums.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
 class BottomNavigationController extends ConsumerStatefulWidget {
@@ -34,12 +36,13 @@ class _BottomNavigationFuncState
     HomePage(),
     CommunityPage(),
     NotificationsPage(),
-    ProfilePage(),
     StudentCourses(),
+    StudentEbooksPage(),
+    ProfilePage(),
   ];
 
   String setPageTopBg() {
-    if (currentPage == 1) {
+    if (currentPage == PageNumber.communityPage) {
       return "assets/images/community_top_bg.png";
     } else {
       return "assets/images/top_bg_img.png";
@@ -47,7 +50,7 @@ class _BottomNavigationFuncState
   }
 
   Widget setPageAppbar() {
-    if (currentPage == 1) {
+    if (currentPage == PageNumber.communityPage) {
       return const CommunityAppBar();
     } else {
       return const HomeAppbar();
@@ -55,20 +58,21 @@ class _BottomNavigationFuncState
   }
 
   Widget? pageSpecificSearchBar() {
-    if (currentPage == 0) {
+    if (currentPage == PageNumber.homePage) {
       return HomeSearchBar(inputFocusNode: inputFocusNode);
-    } else if (currentPage == 4) {
-      return const CoursesSearchBar();
+    } else if ([PageNumber.coursesPage, PageNumber.ebooksPage]
+        .contains(currentPage)) {
+      return const OnlySearchBar();
     }
     return null;
   }
 
   double paddingFromTop() {
-    if (currentPage == 0) {
+    if (currentPage == PageNumber.homePage) {
       return 260;
-    } else if (currentPage == 1) {
+    } else if (currentPage == PageNumber.communityPage) {
       return 180;
-    } else if (currentPage == 2) {
+    } else if (currentPage == PageNumber.notificationsPage) {
       return 140;
     } else {
       return 200;
@@ -87,9 +91,9 @@ class _BottomNavigationFuncState
 
     return Scaffold(
       key: ScaffoldKey.scaffoldKey,
-      endDrawer: currentPage != 1 ? const EndDrawer() : null,
+      endDrawer: currentPage != PageNumber.communityPage ? const EndDrawer() : null,
       resizeToAvoidBottomInset: false,
-      drawer: currentPage == 1 ? const CommunityDrawer() : null,
+      drawer: currentPage == PageNumber.communityPage ? const CommunityDrawer() : null,
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
@@ -127,7 +131,7 @@ class _BottomNavigationFuncState
                 ),
               ),
             ),
-            if ([0, 2, 4].contains(currentPage))
+            if ([PageNumber.homePage, PageNumber.coursesPage, PageNumber.ebooksPage].contains(currentPage))
               Positioned(
                 top: 130,
                 child: SizedBox(
@@ -135,7 +139,7 @@ class _BottomNavigationFuncState
                   child: pageSpecificSearchBar(),
                 ),
               ),
-            if (currentPage == 1)
+            if (currentPage == PageNumber.communityPage)
               Positioned(
                 top: 140,
                 left: 80,

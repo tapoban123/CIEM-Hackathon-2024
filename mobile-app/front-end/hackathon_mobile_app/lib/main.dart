@@ -4,6 +4,7 @@ import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
 import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/theme/colors.dart';
+import 'package:hackathon_mobile_app/utils/splash_screen.dart';
 
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Hackathon Mobile App",
       theme: ThemeData.dark(useMaterial3: true).copyWith(
-        textTheme:  TextTheme(
+        textTheme: TextTheme(
           displaySmall: TextStyle(
             fontFamily: "TripSans",
             fontSize: 12,
@@ -54,11 +55,15 @@ class MyApp extends StatelessWidget {
             fontSize: 24,
             letterSpacing: 0.5,
             fontWeight: FontWeight.bold,
-            color:  CustomColors.darkTextColor,
+            color: CustomColors.darkTextColor,
           ),
         ),
       ),
-      home: isAuthenticated ? BottomNavigationController() : LoginScreen(),
+      // home: isAuthenticated ? BottomNavigationController() : LoginScreen(),
+      home: SplashScreen(
+        navigateToPage:
+            isAuthenticated ? BottomNavigationController() : LoginScreen(),
+      ),
     );
   }
 }

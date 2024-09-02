@@ -4,6 +4,10 @@ List communityMembers = [
     "avatar": "assets/images/female_avatar.png",
   },
   {
+    "name": "Adrija",
+    "avatar": "assets/images/female_avatar2.png",
+  },
+  {
     "name": "Soumalya",
     "avatar": "assets/images/male_avatar1.png",
   },
