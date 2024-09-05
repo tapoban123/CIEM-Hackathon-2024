@@ -14,7 +14,7 @@ Develop Effective Career Counselling and Guidance Programs in Schools to Enhance
 - A Website ([View the Code](web))
 - Machine learning models ([View the Code](ml_model))
 - A mobile application ([View the Code](mobile-app/front-end/hackathon_mobile_app/lib))
-- An AI-integrated chatbot
+- An AI-integrated chatbot ([Try out the chatbot](https://cdn.botpress.cloud/webchat/v2.1/shareable.html?botId=ccabaa17-8d1b-4591-bcd7-051129e46a99))
 
 ### Working:
 
