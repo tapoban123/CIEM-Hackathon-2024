@@ -35,7 +35,8 @@ List<Map<String, dynamic>> courses = [
   {
     "title": "Introduction to Clinical Psychology",
     "subtitle": "The University of Queensland",
-    "url": "https://www.edx.org/learn/psychology/the-university-of-queensland-introduction-to-clinical-psychology?index=product&objectID=course-b1bc85f5-6d1e-46a7-b738-bb47294aec42&webview=false&campaign=Introduction+to+Clinical+Psychology&source=edX&product_category=course&placement_url=https%3A%2F%2Fwww.edx.org%2Flearn%2Fpsychology",
+    "url":
+        "https://www.edx.org/learn/psychology/the-university-of-queensland-introduction-to-clinical-psychology?index=product&objectID=course-b1bc85f5-6d1e-46a7-b738-bb47294aec42&webview=false&campaign=Introduction+to+Clinical+Psychology&source=edX&product_category=course&placement_url=https%3A%2F%2Fwww.edx.org%2Flearn%2Fpsychology",
     "color": const Color(0xffFFFFFF),
   },
   {

@@ -27,7 +27,6 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         _videoController.play();
         setState(() {});
-        print("Started playing");
       },
     );
 
@@ -37,14 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
       () async {
         if (_videoController.value.position ==
             _videoController.value.duration) {
-          Navigator.of(context).pushAndRemoveUntil(
+          Navigator.of(context).pushReplacement(
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
                   widget.navigateToPage,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                print("Video completed");
-
                 final tween = Tween(
                   begin: Offset(1, 0),
                   end: Offset.zero,
@@ -61,8 +58,9 @@ class _SplashScreenState extends State<SplashScreen> {
               },
               transitionDuration: Duration(milliseconds: 300),
             ),
-            (route) => false,
           );
+
+          _videoController.dispose();
         }
       },
     );

@@ -27,7 +27,8 @@ class NotificationsPage extends StatelessWidget {
             receivedDate: "30-08-2024",
           ),
           const NotificationsCard(
-            notificationMessage: "A new course just got added to your curriculum",
+            notificationMessage:
+                "A new course just got added to your curriculum",
             receivedTime: "10:00 AM",
             receivedDate: "29-08-2024",
           ),

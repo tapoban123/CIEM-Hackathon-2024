@@ -1,11 +1,11 @@
 List communityMembers = [
   {
-    "name": "Prerona",
-    "avatar": "assets/images/female_avatar.png",
-  },
-  {
     "name": "Adrija",
     "avatar": "assets/images/female_avatar2.png",
+  },
+  {
+    "name": "Prerona",
+    "avatar": "assets/images/female_avatar.png",
   },
   {
     "name": "Soumalya",
@@ -22,8 +22,7 @@ List communityMembers = [
   {
     "name": "Subham",
     "avatar": "assets/images/male_avatar3.png",
- "name": "Adrija",
-    "avatar": "assets/images/female_avatar6.png" },
+  },
 ];
 
 List<String> communityMessages = [

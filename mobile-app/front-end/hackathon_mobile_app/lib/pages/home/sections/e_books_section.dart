@@ -23,7 +23,9 @@ class EBooksSection extends ConsumerWidget {
             ),
             GestureDetector(
               onTap: () {
-                ref.read(navigationProvider.notifier).navigateToPage(PageNumber.ebooksPage);
+                ref
+                    .read(navigationProvider.notifier)
+                    .navigateToPage(PageNumber.ebooksPage);
               },
               child: Text(
                 "View all",

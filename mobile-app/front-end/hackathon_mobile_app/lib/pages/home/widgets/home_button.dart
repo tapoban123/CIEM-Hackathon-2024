@@ -18,7 +18,7 @@ class HomeButton extends StatelessWidget {
         maxWidth: 120,
         minWidth: 70,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       // width: 100,
       decoration: BoxDecoration(
         color: buttonColor,
@@ -35,7 +35,7 @@ class HomeButton extends StatelessWidget {
       child: Text(
         buttonText,
         textAlign: TextAlign.center,
-        style:  TextStyle(
+        style: TextStyle(
           color: CustomColors.darkTextColor,
           fontSize: 10,
         ),

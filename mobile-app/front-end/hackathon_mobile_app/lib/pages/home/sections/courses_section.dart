@@ -24,7 +24,9 @@ class CoursesSection extends ConsumerWidget {
             ),
             GestureDetector(
               onTap: () {
-                ref.read(navigationProvider.notifier).navigateToPage(PageNumber.coursesPage);
+                ref
+                    .read(navigationProvider.notifier)
+                    .navigateToPage(PageNumber.coursesPage);
               },
               child: Text(
                 "View all",

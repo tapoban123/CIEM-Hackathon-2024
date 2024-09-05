@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:hackathon_mobile_app/utils/enums.dart';
 import 'package:hackathon_mobile_app/utils/scaffold_key.dart';
 
@@ -35,6 +36,8 @@ class EndDrawer extends ConsumerWidget {
       (route) => false,
     );
 
+    ref.invalidate(navigationProvider);
+    ref.invalidate(showOrHideBNBProvider);
     ref.read(localDatabaseServiceProvider.notifier).storeData(false);
   }
 

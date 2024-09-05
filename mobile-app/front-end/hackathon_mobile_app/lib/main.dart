@@ -4,7 +4,6 @@ import 'package:hackathon_mobile_app/auth/login_screen.dart';
 import 'package:hackathon_mobile_app/home_navigation/bottom_navigation_controller.dart';
 import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/theme/colors.dart';
-import 'package:hackathon_mobile_app/utils/splash_screen.dart';
 
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
@@ -59,11 +58,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: isAuthenticated ? BottomNavigationController() : LoginScreen(),
-      home: SplashScreen(
-        navigateToPage:
-            isAuthenticated ? BottomNavigationController() : LoginScreen(),
-      ),
+      home: isAuthenticated ? BottomNavigationController() : LoginScreen(),
+      // home: SplashScreen(
+      //   navigateToPage:
+      //       isAuthenticated ? BottomNavigationController() : LoginScreen(),
+      // ),
     );
   }
 }

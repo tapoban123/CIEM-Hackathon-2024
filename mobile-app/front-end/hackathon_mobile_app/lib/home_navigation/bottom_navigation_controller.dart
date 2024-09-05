@@ -91,9 +91,12 @@ class _BottomNavigationFuncState
 
     return Scaffold(
       key: ScaffoldKey.scaffoldKey,
-      endDrawer: currentPage != PageNumber.communityPage ? const EndDrawer() : null,
+      endDrawer:
+          currentPage != PageNumber.communityPage ? const EndDrawer() : null,
       resizeToAvoidBottomInset: false,
-      drawer: currentPage == PageNumber.communityPage ? const CommunityDrawer() : null,
+      drawer: currentPage == PageNumber.communityPage
+          ? const CommunityDrawer()
+          : null,
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
@@ -131,7 +134,11 @@ class _BottomNavigationFuncState
                 ),
               ),
             ),
-            if ([PageNumber.homePage, PageNumber.coursesPage, PageNumber.ebooksPage].contains(currentPage))
+            if ([
+              PageNumber.homePage,
+              PageNumber.coursesPage,
+              PageNumber.ebooksPage
+            ].contains(currentPage))
               Positioned(
                 top: 130,
                 child: SizedBox(

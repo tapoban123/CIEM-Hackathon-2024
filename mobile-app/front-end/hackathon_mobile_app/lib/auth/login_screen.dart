@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: child,
           );
         },
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 300),
       ),
     );
   }
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
                     color: Colors.black,
                     offset: Offset(6.5, 6.5),
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: 240,
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                  fillColor: Colors.white,
+                                  fillColor: CustomColors.whiteColor,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
