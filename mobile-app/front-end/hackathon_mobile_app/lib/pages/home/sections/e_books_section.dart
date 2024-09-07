@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/data/e_books.dart';
 import 'package:hackathon_mobile_app/pages/home/widgets/e_books_card.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:hackathon_mobile_app/theme/colors.dart';
 import 'package:hackathon_mobile_app/utils/enums.dart';
 
@@ -26,6 +27,7 @@ class EBooksSection extends ConsumerWidget {
                 ref
                     .read(navigationProvider.notifier)
                     .navigateToPage(PageNumber.ebooksPage);
+                ref.invalidate(showOrHideBNBProvider);
               },
               child: Text(
                 "View all",

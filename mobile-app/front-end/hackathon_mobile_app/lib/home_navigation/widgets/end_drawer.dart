@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hackathon_mobile_app/auth/login_screen.dart';
+import 'package:hackathon_mobile_app/providers/community_messages_provider.dart';
 import 'package:hackathon_mobile_app/providers/local_database_auth_provider/local_database_service_provider.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
 import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
@@ -38,11 +39,13 @@ class EndDrawer extends ConsumerWidget {
 
     ref.invalidate(navigationProvider);
     ref.invalidate(showOrHideBNBProvider);
+    ref.invalidate(communityMessagesProvider);
     ref.read(localDatabaseServiceProvider.notifier).storeData(false);
   }
 
   void navigateToCourses(WidgetRef ref, int pageNumber) {
     ref.read(navigationProvider.notifier).navigateToPage(pageNumber);
+    ref.invalidate(showOrHideBNBProvider);
     ScaffoldKey.scaffoldKey.currentState!.closeEndDrawer();
   }
 

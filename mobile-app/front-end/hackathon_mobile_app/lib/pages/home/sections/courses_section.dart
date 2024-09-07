@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon_mobile_app/data/courses.dart';
 import 'package:hackathon_mobile_app/providers/navigation_provider.dart';
+import 'package:hackathon_mobile_app/providers/show_or_hide_bnb_provider.dart';
 import 'package:hackathon_mobile_app/theme/colors.dart';
 import 'package:hackathon_mobile_app/utils/enums.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -27,6 +28,7 @@ class CoursesSection extends ConsumerWidget {
                 ref
                     .read(navigationProvider.notifier)
                     .navigateToPage(PageNumber.coursesPage);
+                ref.invalidate(showOrHideBNBProvider);
               },
               child: Text(
                 "View all",
