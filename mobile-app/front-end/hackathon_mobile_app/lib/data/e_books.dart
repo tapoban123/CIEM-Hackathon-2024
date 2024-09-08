@@ -1,10 +1,10 @@
 List<Map<String, dynamic>> eBooks = [
   {
-    "name": "THE DENIAL OF DEATH",
+    "name": "Atomic Habits",
     "url":
-        "https://m.media-amazon.com/images/I/819IuoW6Z+L._AC_UF1000,1000_QL80_.jpg",
+        "https://m.media-amazon.com/images/I/81F90H7hnML._AC_UF1000,1000_QL80_.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1DMrruJ-fXbToeLHzHzYYZwfnfLdT7JCc/view?usp=sharing",
+        "https://drive.google.com/file/d/1n1JoDRnBX_v88ZJP6yHkwBV86y_Jb7Bp/view?usp=drive_link",
   },
   {
     "name": "Thinking, Fast and Slow by Daniel Kahneman",
@@ -36,38 +36,38 @@ List<Map<String, dynamic>> eBooks = [
         "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
   },
   {
-    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "name": "Blink: The Power of Thinking Without Thinking",
     "url":
-        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+        "https://m.media-amazon.com/images/I/81wdCn9ap7L._AC_UF1000,1000_QL80_.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+        "https://drive.google.com/file/d/11hoQYvMpArIbA1Y_xVOjQU534dUad9Yk/view?usp=sharing",
   },
   {
-    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "name": "Games People Play",
     "url":
-        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+        "https://cdn01.sapnaonline.com/product_media/9780241257470/md_9780241257470.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+        "https://drive.google.com/file/d/1xmT0dFufos1p07tekQwf5InmJ1zG8rb6/view?usp=sharing",
   },
   {
-    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "name": "Quiet: The Power of Introverts in a World That Can't Stop Talking",
     "url":
-        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+        "https://m.media-amazon.com/images/I/710KQAE6d5L._AC_UF1000,1000_QL80_.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+        "https://drive.google.com/file/d/1tUZleGLs9H579DJLOkZwUUTNrM1uBcbd/view?usp=sharing",
   },
   {
-    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "name": "Power of Habit",
     "url":
-        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+        "https://m.media-amazon.com/images/I/71ONWR6eXDL._AC_UF1000,1000_QL80_.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+        "https://drive.google.com/file/d/1P5qjPNg3NjI0BF7I1flctKfsJ1es9ib0/view?usp=sharing",
   },
   {
-    "name": "The Honest Truth about Dishonesty: How We Lie to Everyone",
+    "name": "The Paradox of Choice",
     "url":
-        "https://m.media-amazon.com/images/I/81yePlRlH1L._AC_UF1000,1000_QL80_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1410138134i/10639.jpg",
     "access_url":
-        "https://drive.google.com/file/d/1lB4cez-WHLmMoDIRnh-uwlZDT-IBggcm/view?usp=sharing",
+        "https://drive.google.com/file/d/1Sg9TPwNcSj8o3_Upi7v18LVc4GeyUo8R/view?usp=sharing",
   },
 ];

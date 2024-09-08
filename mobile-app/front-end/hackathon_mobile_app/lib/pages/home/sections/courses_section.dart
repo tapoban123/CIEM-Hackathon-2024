@@ -58,13 +58,15 @@ class CoursesSection extends ConsumerWidget {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.transparent,
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                   child: AnyLinkPreview(
                     link: eachCourse["url"],
                     borderRadius: 15,
                     removeElevation: true,
-                    placeholderWidget: Text("Loading..."),
+                    placeholderWidget: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                     bodyTextOverflow: TextOverflow.ellipsis,
                     displayDirection: UIDirection.uiDirectionVertical,
                     titleStyle:

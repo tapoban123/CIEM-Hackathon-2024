@@ -23,7 +23,7 @@ List<Map<String, dynamic>> courses = [
   {
     "title": "Introduction to Child Psychology",
     "subtitle": "The Open University",
-    "url": "https://www.coursera.org/learn/psychology-of-thrill-seekers",
+    "url": "https://www.open.edu/openlearn/education-development/childhood-youth/introduction-child-psychology/content-section-0?intro=1",
     "color": const Color(0xffFF7340),
   },
   {
