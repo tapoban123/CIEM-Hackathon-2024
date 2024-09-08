@@ -65,7 +65,9 @@ class CoursesSection extends ConsumerWidget {
                     borderRadius: 15,
                     removeElevation: true,
                     placeholderWidget: Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
                     ),
                     bodyTextOverflow: TextOverflow.ellipsis,
                     displayDirection: UIDirection.uiDirectionVertical,
