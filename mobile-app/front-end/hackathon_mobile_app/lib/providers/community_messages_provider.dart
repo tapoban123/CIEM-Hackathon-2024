@@ -34,7 +34,6 @@ class CommunityMessagesProvider
       "message": message,
     };
 
-    state.add(messagesData);
-    // print(state);
+    state = [...state, messagesData];
   }
 }
